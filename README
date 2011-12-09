@@ -1,0 +1,19 @@
+  _   _                          _         _        
+ | \ | |                        | |       | |       
+ |  \| | ___  _ __ ___   ___ ___| |_  __ _| |_  ___ 
+ | . ` |/ _ \| '_ ` _ \ / _ | __| __|/ _` | __|/ _ \
+ | |\  | (_) | | | | | |  __|__ \ |_| (_| | |_|  __/
+ |_| \_|\___/|_| |_| |_|\___|___/\__|\__,_|\__|\___|
+
+  Nomestate is an osc to midi translator for Monomes, 
+  Arduinomes, and Chronomes
+
+  it works with the zeroconf version of serialOSC, 
+  and the current Monome OSC protocol. if you plug 
+  in a Chronome, you will also get access to pressure 
+  and color data.
+
+  Nomestate is built using the JUCE module branch 
+  www.rawmaterialsoftware.com
+
+                                  contact@flipmu.com
