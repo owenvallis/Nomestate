@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{36BFCD08-1346-DFDB-755F-BBCD80A7062D}") = "Nomestate", "Nomestate.vcxproj", "{A1405EB8-5C1B-0711-E7B9-E3D57184C0E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1405EB8-5C1B-0711-E7B9-E3D57184C0E6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A1405EB8-5C1B-0711-E7B9-E3D57184C0E6}.Debug|Win32.Build.0 = Debug|Win32
+		{A1405EB8-5C1B-0711-E7B9-E3D57184C0E6}.Release|Win32.ActiveCfg = Release|Win32
+		{A1405EB8-5C1B-0711-E7B9-E3D57184C0E6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

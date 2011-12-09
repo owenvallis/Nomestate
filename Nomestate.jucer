@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="nw9dyo" name="Nomestate" projectType="guiapp" version="0.0.1"
+              bundleIdentifier="com.flipmu.Nomestate" jucerVersion="3.0.0">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="xP45SC" juceFolder="../../../sdks/juce/modules"/>
+    <VS2008 targetFolder="Builds/VisualStudio2008" libraryType="1" juceFolder="../../../sdks/juce/modules"/>
+    <VS2010 targetFolder="Builds/VisualStudio2010" libraryType="1" juceFolder="../../../sdks/juce/modules"/>
+    <LINUX_MAKE targetFolder="Builds/Linux" juceFolder="../../../sdks/juce/modules"/>
+  </EXPORTFORMATS>
+  <CONFIGURATIONS>
+    <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="chronomeState"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="32BitUniversal"
+                   headerPath="../../Libraries/**"/>
+    <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="chronomeState"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="32BitUniversal"
+                   headerPath="../../Libraries/**"/>
+  </CONFIGURATIONS>
+  <MAINGROUP id="eBleJF" name="Nomestate">
+    <GROUP id="{333B5E45-B1A8-4314-B956-7146EF6A5D76}" name="Libraries">
+      <GROUP id="{E4CB9906-2D74-7EF1-FB72-2069BEEA0811}" name="Ip">
+        <FILE id="AJr8Lf" name="IpEndpointName.cpp" compile="1" resource="0"
+              file="Libraries/ip/IpEndpointName.cpp"/>
+        <FILE id="Oep6oF" name="IpEndpointName.h" compile="0" resource="0"
+              file="Libraries/ip/IpEndpointName.h"/>
+        <FILE id="RrSUF4" name="NetworkingUtils.h" compile="0" resource="0"
+              file="Libraries/ip/NetworkingUtils.h"/>
+        <FILE id="aQQ2gd" name="PacketListener.h" compile="0" resource="0"
+              file="Libraries/ip/PacketListener.h"/>
+        <GROUP id="{D6E1684E-8133-C9F9-43C9-46F1D96ECD10}" name="posix">
+          <FILE id="pGgk08" name="NetworkingUtils.cpp" compile="1" resource="0"
+                file="Libraries/ip/posix/NetworkingUtils.cpp"/>
+          <FILE id="awid8a" name="UdpSocket.cpp" compile="1" resource="0" file="Libraries/ip/posix/UdpSocket.cpp"/>
+        </GROUP>
+        <FILE id="ulTfoN" name="TimerListener.h" compile="0" resource="0" file="Libraries/ip/TimerListener.h"/>
+        <FILE id="etJ7Xl" name="UdpSocket.h" compile="0" resource="0" file="Libraries/ip/UdpSocket.h"/>
+      </GROUP>
+      <GROUP id="{03C295F1-2360-F4DE-8817-5D94C5D86B91}" name="osc">
+        <FILE id="zHP0w3" name="MessageMappingOscPacketListener.h" compile="0"
+              resource="0" file="Libraries/osc/MessageMappingOscPacketListener.h"/>
+        <FILE id="AINY4F" name="OscException.h" compile="0" resource="0" file="Libraries/osc/OscException.h"/>
+        <FILE id="FclnMS" name="OscHostEndianness.h" compile="0" resource="0"
+              file="Libraries/osc/OscHostEndianness.h"/>
+        <FILE id="cO2xaW" name="OscOutboundPacketStream.cpp" compile="1" resource="0"
+              file="Libraries/osc/OscOutboundPacketStream.cpp"/>
+        <FILE id="PouCzq" name="OscOutboundPacketStream.h" compile="0" resource="0"
+              file="Libraries/osc/OscOutboundPacketStream.h"/>
+        <FILE id="oVzsDg" name="OscPacketListener.h" compile="0" resource="0"
+              file="Libraries/osc/OscPacketListener.h"/>
+        <FILE id="gqE5q7" name="OscPrintReceivedElements.cpp" compile="1" resource="0"
+              file="Libraries/osc/OscPrintReceivedElements.cpp"/>
+        <FILE id="DyQnYd" name="OscPrintReceivedElements.h" compile="0" resource="0"
+              file="Libraries/osc/OscPrintReceivedElements.h"/>
+        <FILE id="F3G74c" name="OscReceivedElements.cpp" compile="1" resource="0"
+              file="Libraries/osc/OscReceivedElements.cpp"/>
+        <FILE id="ivUT0g" name="OscReceivedElements.h" compile="0" resource="0"
+              file="Libraries/osc/OscReceivedElements.h"/>
+        <FILE id="o9etry" name="OscTypes.cpp" compile="1" resource="0" file="Libraries/osc/OscTypes.cpp"/>
+        <FILE id="zcY5Wr" name="OscTypes.h" compile="0" resource="0" file="Libraries/osc/OscTypes.h"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{F1CE0A87-E12F-CF1F-D886-55DF9B0FBBBD}" name="Source">
+      <FILE id="p3O8i3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <GROUP id="{01A00411-75A4-31B9-EE41-A6BA732EA193}" name="Nomestate View">
+        <FILE id="xD5ysu" name="AbletonStyleOSCComponent.cpp" compile="1" resource="0"
+              file="Source/AbletonStyleOSCComponent.cpp"/>
+        <FILE id="JDHva3" name="AbletonStyleOSCComponent.h" compile="0" resource="0"
+              file="Source/AbletonStyleOSCComponent.h"/>
+        <FILE id="QzRNjF" name="AbletonStyleMidiMsgTypeIOComponent.cpp" compile="1"
+              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.cpp"/>
+        <FILE id="CAwbkH" name="AbletonStyleMidiMsgTypeIOComponent.h" compile="0"
+              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.h"/>
+        <FILE id="G4RWdd" name="MidiIOManagerComponent.cpp" compile="1" resource="0"
+              file="Source/MidiIOManagerComponent.cpp"/>
+        <FILE id="iQkNvG" name="MidiIOManagerComponent.h" compile="0" resource="0"
+              file="Source/MidiIOManagerComponent.h"/>
+        <FILE id="KfxXk1" name="PreferencesComponent.cpp" compile="1" resource="0"
+              file="Source/PreferencesComponent.cpp"/>
+        <FILE id="XuIZxc" name="PreferencesComponent.h" compile="0" resource="0"
+              file="Source/PreferencesComponent.h"/>
+        <FILE id="tPVSUH" name="NomeButton.cpp" compile="1" resource="0" file="Source/NomeButton.cpp"/>
+        <FILE id="d4dlpF" name="NomeButton.h" compile="0" resource="0" file="Source/NomeButton.h"/>
+        <FILE id="MQEeJY" name="CustomLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/CustomLookAndFeel.cpp"/>
+        <FILE id="ECiEk9" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/CustomLookAndFeel.h"/>
+        <FILE id="k4p74V" name="MainWindow.cpp" compile="1" resource="0" file="Source/MainWindow.cpp"/>
+        <FILE id="MPzpKX" name="MainWindow.h" compile="0" resource="0" file="Source/MainWindow.h"/>
+        <FILE id="MtyyKm" name="MainComponent.cpp" compile="1" resource="0"
+              file="Source/MainComponent.cpp"/>
+        <FILE id="jIWoHd" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
+        <FILE id="HeGaWS" name="ColourSelectorPropertyComponent.cpp" compile="1"
+              resource="0" file="Source/ColourSelectorPropertyComponent.cpp"/>
+        <FILE id="lwqixl" name="ColourSelectorPropertyComponent.h" compile="0"
+              resource="0" file="Source/ColourSelectorPropertyComponent.h"/>
+      </GROUP>
+      <GROUP id="{2AB55B3F-218A-82B5-2A40-CF76A2F6AFA3}" name="ZeroConf Core">
+        <FILE id="f1iyUu" name="ZeroConfResolve.cpp" compile="1" resource="0"
+              file="Source/ZeroConfResolve.cpp"/>
+        <FILE id="I1tHfk" name="ZeroConfResolve.h" compile="0" resource="0"
+              file="Source/ZeroConfResolve.h"/>
+        <FILE id="k8dtC1" name="ZeroConfReceiver.cpp" compile="1" resource="0"
+              file="Source/ZeroConfReceiver.cpp"/>
+        <FILE id="NfufeP" name="ZeroConfReceiver.h" compile="0" resource="0"
+              file="Source/ZeroConfReceiver.h"/>
+      </GROUP>
+      <GROUP id="{B96111C1-DB1D-402D-BAB2-773DA177C67F}" name="Signal Core">
+        <FILE id="pW0l77" name="SignalCore.cpp" compile="1" resource="0" file="Source/SignalCore.cpp"/>
+        <FILE id="soSPs2" name="SignalCore.h" compile="0" resource="0" file="Source/SignalCore.h"/>
+        <GROUP id="{AAB062F5-C768-2D5C-4125-59472D901544}" name="Signal Modifier Core">
+          <FILE id="bMOrti" name="SignalModifier.cpp" compile="1" resource="0"
+                file="Source/SignalModifier.cpp"/>
+          <FILE id="rAJfgU" name="SignalModifier.h" compile="0" resource="0"
+                file="Source/SignalModifier.h"/>
+        </GROUP>
+        <GROUP id="{8A35E826-5749-911D-4C1F-30D1B5A47080}" name="MIDI Core">
+          <FILE id="yJFqXQ" name="MIDIReceiver.cpp" compile="1" resource="0"
+                file="Source/MIDIReceiver.cpp"/>
+          <FILE id="ByMyKa" name="MIDIReceiver.h" compile="0" resource="0" file="Source/MIDIReceiver.h"/>
+          <FILE id="otvenc" name="MIDISender.cpp" compile="1" resource="0" file="Source/MIDISender.cpp"/>
+          <FILE id="Y9Fcko" name="MIDISender.h" compile="0" resource="0" file="Source/MIDISender.h"/>
+        </GROUP>
+        <GROUP id="{DC3D83A1-88A8-E92A-72EE-5010FD2112DD}" name="Network Core">
+          <FILE id="ptNqe1" name="NetworkReceiver.cpp" compile="1" resource="0"
+                file="Source/NetworkReceiver.cpp"/>
+          <FILE id="pnPD3v" name="NetworkReceiver.h" compile="0" resource="0"
+                file="Source/NetworkReceiver.h"/>
+          <FILE id="bRVUiy" name="NetworkSender.cpp" compile="1" resource="0"
+                file="Source/NetworkSender.cpp"/>
+          <FILE id="edPow4" name="NetworkSender.h" compile="0" resource="0" file="Source/NetworkSender.h"/>
+        </GROUP>
+        <GROUP id="{6D7ED429-4197-3B5B-67C6-5EA48826EBE3}" name="Messaging Core">
+          <FILE id="DsBC0p" name="MessageCenter.cpp" compile="1" resource="0"
+                file="Source/MessageCenter.cpp"/>
+          <FILE id="MroojN" name="MessageCenter.h" compile="0" resource="0" file="Source/MessageCenter.h"/>
+        </GROUP>
+        <GROUP id="{DE77F745-284D-B552-82D9-3C9A2A93F8F8}" name="Command">
+          <GROUP id="{6483AECF-7535-453A-B2BE-B3542CF726AA}" name="Commands">
+            <FILE id="Vh5Eda" name="Command_SEND_OSC.h" compile="0" resource="0"
+                  file="Source/Command_SEND_OSC.h"/>
+            <FILE id="MzKDil" name="Command_SIGNAL_MOD.h" compile="0" resource="0"
+                  file="Source/Command_SIGNAL_MOD.h"/>
+            <FILE id="Uzzo28" name="Command_SEND_MIDI.h" compile="0" resource="0"
+                  file="Source/Command_SEND_MIDI.h"/>
+          </GROUP>
+          <FILE id="Musu8h" name="Commands.cpp" compile="1" resource="0" file="Source/Commands.cpp"/>
+          <FILE id="Pfrfea" name="Commands.h" compile="0" resource="0" file="Source/Commands.h"/>
+          <FILE id="FPkhRX" name="Command.h" compile="0" resource="0" file="Source/Command.h"/>
+        </GROUP>
+        <GROUP id="{51B7478F-0863-BDF6-418F-FD80A717E5D9}" name="Signal">
+          <FILE id="mVXV6Y" name="Signal.cpp" compile="1" resource="0" file="Source/Signal.cpp"/>
+          <FILE id="hk9Xqm" name="Signal.h" compile="0" resource="0" file="Source/Signal.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{E172C905-8A29-4A40-140A-99DE87EA87CE}" name="Signal Utils">
+        <FILE id="WOhjBT" name="Message.cpp" compile="1" resource="0" file="Source/Message.cpp"/>
+        <FILE id="Gml1zL" name="Message.h" compile="0" resource="0" file="Source/Message.h"/>
+        <FILE id="Akskze" name="MessageArg.h" compile="0" resource="0" file="Source/MessageArg.h"/>
+        <GROUP id="{3CAB52DB-F1CD-BCF1-8772-BAB83E79DFBD}" name="OSC">
+          <FILE id="p652OQ" name="OSCArg.h" compile="0" resource="0" file="Source/OSCArg.h"/>
+          <FILE id="biC1Vw" name="OSCBroadcaster.cpp" compile="1" resource="0"
+                file="Source/OSCBroadcaster.cpp"/>
+          <FILE id="vtqSd9" name="OSCBroadcaster.h" compile="0" resource="0"
+                file="Source/OSCBroadcaster.h"/>
+          <FILE id="rze8XA" name="OSCBundle.cpp" compile="1" resource="0" file="Source/OSCBundle.cpp"/>
+          <FILE id="zrCatY" name="OSCBundle.h" compile="0" resource="0" file="Source/OSCBundle.h"/>
+          <FILE id="yyLRVJ" name="OSCListener.cpp" compile="1" resource="0" file="Source/OSCListener.cpp"/>
+          <FILE id="MbgrTm" name="OSCListener.h" compile="0" resource="0" file="Source/OSCListener.h"/>
+          <FILE id="bVbvum" name="OSCMessage.cpp" compile="1" resource="0" file="Source/OSCMessage.cpp"/>
+          <FILE id="bKOmKr" name="OSCMessage.h" compile="0" resource="0" file="Source/OSCMessage.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="MIDI IO Utils">
+        <FILE id="SLuvEs" name="MidiIODeviceManager.h" compile="0" resource="0"
+              file="Source/MidiIODeviceManager.h"/>
+        <FILE id="Oc5NUl" name="MidiIODeviceManager.cpp" compile="1" resource="0"
+              file="Source/MidiIODeviceManager.cpp"/>
+      </GROUP>
+      <GROUP id="{B6F81B48-7B94-692F-5E3F-117F1A1E71FC}" name="Button Properties">
+        <FILE id="sPmafl" name="ButtonPropertyContainer.h" compile="0" resource="0"
+              file="Source/ButtonPropertyContainer.h"/>
+        <FILE id="xXggxH" name="PropertiesManager.cpp" compile="1" resource="0"
+              file="Source/PropertiesManager.cpp"/>
+        <FILE id="CoIeqS" name="PropertiesManager.h" compile="0" resource="0"
+              file="Source/PropertiesManager.h"/>
+        <GROUP id="{86CC2F4A-39BE-814C-EE5C-BF80BE2C6291}" name="PropertyGroup">
+          <FILE id="tz4ozO" name="PropertyGroup.cpp" compile="1" resource="0"
+                file="Source/PropertyGroup.cpp"/>
+          <FILE id="Jn6sS9" name="PropertyGroup.h" compile="0" resource="0" file="Source/PropertyGroup.h"/>
+        </GROUP>
+      </GROUP>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
