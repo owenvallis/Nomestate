@@ -66,10 +66,10 @@
               file="Source/DeviceTabComponent.cpp"/>
         <FILE id="JDHva3" name="DeviceTabComponent.h" compile="0" resource="0"
               file="Source/DeviceTabComponent.h"/>
-        <FILE id="QzRNjF" name="AbletonStyleMidiMsgTypeIOComponent.cpp" compile="1"
-              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.cpp"/>
-        <FILE id="CAwbkH" name="AbletonStyleMidiMsgTypeIOComponent.h" compile="0"
-              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.h"/>
+        <FILE id="QzRNjF" name="MIDIMsgTypeIOComponent.cpp" compile="1" resource="0"
+              file="Source/MIDIMsgTypeIOComponent.cpp"/>
+        <FILE id="CAwbkH" name="MIDIMsgTypeIOComponent.h" compile="0" resource="0"
+              file="Source/MIDIMsgTypeIOComponent.h"/>
         <FILE id="G4RWdd" name="MidiIOManagerComponent.cpp" compile="1" resource="0"
               file="Source/MidiIOManagerComponent.cpp"/>
         <FILE id="iQkNvG" name="MidiIOManagerComponent.h" compile="0" resource="0"

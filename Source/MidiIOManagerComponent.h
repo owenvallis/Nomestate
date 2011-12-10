@@ -12,7 +12,7 @@
 #define __MIDIIOMANAGERCOMPONENT_H_3F57D2E5__
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "AbletonStyleMidiMsgTypeIOComponent.h"
+#include "MidiMsgTypeIOComponent.h"
 #include "MidiIODeviceManager.h"
 
 
@@ -36,7 +36,7 @@ private:
 	//==========================================================================
 	ScopedPointer<Label>                            midiPorts, note, cc;
 	
-	OwnedArray<AbletonStyleMidiMsgTypeIOComponent>  midiInputs, midiOutputs;
+	OwnedArray<MidiMsgTypeIOComponent>  midiInputs, midiOutputs;
 	OwnedArray<Label>                               midiInputLabel, midiOutputLabel;
 	StringArray                                     midiInputsList, midiOutputsList;
 	

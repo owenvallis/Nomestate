@@ -1,29 +1,29 @@
 /*
   ==============================================================================
 
-    AbletonStyleMidiMsgTypeIOComponent.h
+    MidiMsgTypeIOComponent.h
     Created: 3 Feb 2011 12:10:41pm
     Author:  owen vallis
 
   ==============================================================================
 */
 
-#ifndef __AbletonStyleMidiMsgTypeIOComponent_H_A183A3CE__
-#define __AbletonStyleMidiMsgTypeIOComponent_H_A183A3CE__
+#ifndef __MidiMsgTypeIOComponent_H_A183A3CE__
+#define __MidiMsgTypeIOComponent_H_A183A3CE__
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "MidiIODeviceManager.h"
 
 
-class AbletonStyleMidiMsgTypeIOComponent  : public Component,
+class MidiMsgTypeIOComponent  : public Component,
 public ButtonListener
 {
 public:
     //==============================================================================
-    AbletonStyleMidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
+    MidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
                                             const String& midiDeviceName_, 
                                             int deviceNum_, bool input_);
-    ~AbletonStyleMidiMsgTypeIOComponent();
+    ~MidiMsgTypeIOComponent();
 	
     //==============================================================================
 	
@@ -48,10 +48,10 @@ private:
 		
 	//==============================================================================
     // (prevent copy constructor and operator= being generated..)
-    AbletonStyleMidiMsgTypeIOComponent (const AbletonStyleMidiMsgTypeIOComponent&);
-    const AbletonStyleMidiMsgTypeIOComponent& operator= (const AbletonStyleMidiMsgTypeIOComponent&);
+    MidiMsgTypeIOComponent (const MidiMsgTypeIOComponent&);
+    const MidiMsgTypeIOComponent& operator= (const MidiMsgTypeIOComponent&);
 };
 
 
 
-#endif  // __AbletonStyleMidiMsgTypeIOComponent_H_A183A3CE__
+#endif  // __MidiMsgTypeIOComponent_H_A183A3CE__

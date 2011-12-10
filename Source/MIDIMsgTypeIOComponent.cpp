@@ -1,20 +1,20 @@
 /*
   ==============================================================================
 
-    AbletonStyleMidiMsgTypeIOComponent.cpp
+    MidiMsgTypeIOComponent.cpp
     Created: 3 Feb 2011 12:10:41pm
     Author:  owen vallis
 
   ==============================================================================
 */
 
-#include "AbletonStyleMidiMsgTypeIOComponent.h"
+#include "MidiMsgTypeIOComponent.h"
 
 //==============================================================================
-AbletonStyleMidiMsgTypeIOComponent::AbletonStyleMidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
+MidiMsgTypeIOComponent::MidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
 														  const String& midiDeviceName_, 
 														  int deviceNum_, bool input_)
-	: Component ("AbletonStyleMidiMsgTypeIOComponent"),
+	: Component ("MidiMsgTypeIOComponent"),
 	  deviceManager(deviceManager_),
 	  midiDeviceName(midiDeviceName_),
 	  deviceNum(deviceNum_),
@@ -41,16 +41,16 @@ AbletonStyleMidiMsgTypeIOComponent::AbletonStyleMidiMsgTypeIOComponent (MidiIODe
 
 }
 
-AbletonStyleMidiMsgTypeIOComponent::~AbletonStyleMidiMsgTypeIOComponent()
+MidiMsgTypeIOComponent::~MidiMsgTypeIOComponent()
 {
 }
 
 //==============================================================================
-void AbletonStyleMidiMsgTypeIOComponent::paint (Graphics& g)
+void MidiMsgTypeIOComponent::paint (Graphics& g)
 {	
 }
 
-void AbletonStyleMidiMsgTypeIOComponent::resized()
+void MidiMsgTypeIOComponent::resized()
 {
     noteToggleButton->setBounds (proportionOfWidth (0.5800f) - 38, 0, 38, getHeight());
     ccToggleButton->setBounds (proportionOfWidth (0.8200f) - 38, 0, 38, getHeight());
@@ -60,7 +60,7 @@ void AbletonStyleMidiMsgTypeIOComponent::resized()
     midiIODeviceName->setBounds (proportionOfWidth (0.0000f), 0, width + 10, getHeight());
 }
 
-void AbletonStyleMidiMsgTypeIOComponent::buttonClicked (Button* buttonThatWasClicked)
+void MidiMsgTypeIOComponent::buttonClicked (Button* buttonThatWasClicked)
 {
 	
     if (buttonThatWasClicked == noteToggleButton)

@@ -337,7 +337,7 @@
     <ClCompile Include="..\..\Source\DeviceTabComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp">
+    <ClCompile Include="..\..\Source\MIDIMsgTypeIOComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MidiIOManagerComponent.cpp">
@@ -1515,7 +1515,7 @@
     <ClInclude Include="..\..\Source\DeviceTabComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h">
+    <ClInclude Include="..\..\Source\MIDIMsgTypeIOComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MidiIOManagerComponent.h">
