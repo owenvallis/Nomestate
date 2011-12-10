@@ -132,6 +132,9 @@
     <ClCompile Include="..\..\Libraries\osc\OscReceivedElements.cpp"/>
     <ClCompile Include="..\..\Libraries\osc\OscTypes.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
+    <ClCompile Include="..\..\Source\MidiIODeviceManager.cpp"/>
+    <ClCompile Include="..\..\Source\PropertiesManager.cpp"/>
+    <ClCompile Include="..\..\Source\PropertyGroup.cpp"/>
     <ClCompile Include="..\..\Source\DeviceTabComponent.cpp"/>
     <ClCompile Include="..\..\Source\MIDIMsgTypeIOComponent.cpp"/>
     <ClCompile Include="..\..\Source\MidiIOManagerComponent.cpp"/>
@@ -141,8 +144,6 @@
     <ClCompile Include="..\..\Source\MainWindow.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\ColourSelectorPropertyComponent.cpp"/>
-    <ClCompile Include="..\..\Source\ZeroConfResolve.cpp"/>
-    <ClCompile Include="..\..\Source\ZeroConfReceiver.cpp"/>
     <ClCompile Include="..\..\Source\SignalCore.cpp"/>
     <ClCompile Include="..\..\Source\SignalModifier.cpp"/>
     <ClCompile Include="..\..\Source\MIDIReceiver.cpp"/>
@@ -157,9 +158,9 @@
     <ClCompile Include="..\..\Source\OSCBundle.cpp"/>
     <ClCompile Include="..\..\Source\OSCListener.cpp"/>
     <ClCompile Include="..\..\Source\OSCMessage.cpp"/>
-    <ClCompile Include="..\..\Source\MidiIODeviceManager.cpp"/>
-    <ClCompile Include="..\..\Source\PropertiesManager.cpp"/>
-    <ClCompile Include="..\..\Source\PropertyGroup.cpp"/>
+    <ClCompile Include="..\..\Source\StoredSettings.cpp"/>
+    <ClCompile Include="..\..\Source\ZeroConfResolve.cpp"/>
+    <ClCompile Include="..\..\Source\ZeroConfReceiver.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1117,6 +1118,10 @@
     <ClInclude Include="..\..\Libraries\osc\OscPrintReceivedElements.h"/>
     <ClInclude Include="..\..\Libraries\osc\OscReceivedElements.h"/>
     <ClInclude Include="..\..\Libraries\osc\OscTypes.h"/>
+    <ClInclude Include="..\..\Source\MidiIODeviceManager.h"/>
+    <ClInclude Include="..\..\Source\PropertiesManager.h"/>
+    <ClInclude Include="..\..\Source\PropertyGroup.h"/>
+    <ClInclude Include="..\..\Source\ButtonPropertyContainer.h"/>
     <ClInclude Include="..\..\Source\DeviceTabComponent.h"/>
     <ClInclude Include="..\..\Source\MIDIMsgTypeIOComponent.h"/>
     <ClInclude Include="..\..\Source\MidiIOManagerComponent.h"/>
@@ -1126,8 +1131,6 @@
     <ClInclude Include="..\..\Source\MainWindow.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\Source\ColourSelectorPropertyComponent.h"/>
-    <ClInclude Include="..\..\Source\ZeroConfResolve.h"/>
-    <ClInclude Include="..\..\Source\ZeroConfReceiver.h"/>
     <ClInclude Include="..\..\Source\SignalCore.h"/>
     <ClInclude Include="..\..\Source\SignalModifier.h"/>
     <ClInclude Include="..\..\Source\MIDIReceiver.h"/>
@@ -1148,10 +1151,9 @@
     <ClInclude Include="..\..\Source\OSCBundle.h"/>
     <ClInclude Include="..\..\Source\OSCListener.h"/>
     <ClInclude Include="..\..\Source\OSCMessage.h"/>
-    <ClInclude Include="..\..\Source\MidiIODeviceManager.h"/>
-    <ClInclude Include="..\..\Source\ButtonPropertyContainer.h"/>
-    <ClInclude Include="..\..\Source\PropertiesManager.h"/>
-    <ClInclude Include="..\..\Source\PropertyGroup.h"/>
+    <ClInclude Include="..\..\Source\StoredSettings.h"/>
+    <ClInclude Include="..\..\Source\ZeroConfResolve.h"/>
+    <ClInclude Include="..\..\Source\ZeroConfReceiver.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\midi\juce_MidiBuffer.h"/>
