@@ -12,7 +12,6 @@
 #define __MESSAGECENTER_H_1465CB8F__
 
 #include "Signal.h"
-#include "NetworkReceiver.h"
 
 // + Commands
 #include "Commands.h"

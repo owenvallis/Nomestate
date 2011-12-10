@@ -152,3 +152,5 @@ bool MidiIODeviceManager::isMidiOutputEnabled (int devicePos_)
 {	
 	return outputEnabled[devicePos_];
 }
+
+//************************ Saving state 

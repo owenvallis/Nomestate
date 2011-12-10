@@ -14,11 +14,13 @@
 #ifndef __SIGNALCORE_H_63283C81__
 #define __SIGNALCORE_H_63283C81__
 
-#include "MessageCenter.h"
-#include "MIDISender.h"
-#include "SignalModifier.h"
-#include "NetworkSender.h"
 #include "MidiIODeviceManager.h"
+#include "MessageCenter.h"
+#include "SignalModifier.h"
+#include "MIDISender.h"
+#include "MIDIReceiver.h"
+#include "NetworkSender.h"
+#include "NetworkReceiver.h"
 
 
 class SignalCore : public ValueListener {
@@ -37,6 +39,7 @@ private:
     MessageCenter   _mCenter;
     SignalModifier  _sigModifier;
 
+    MIDIReceiver    _MIDIReceiver;
     MIDISender      _MIDISender;
 
     NetworkReceiver _nRecv;
