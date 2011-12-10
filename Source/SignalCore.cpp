@@ -17,9 +17,10 @@
 
 
 SignalCore::SignalCore(MidiIODeviceManager &pMidiIODeviceManager) : _mCenter(),
-_sigModifier(_mCenter),
-_MIDISender(pMidiIODeviceManager),
-_nRecv(_mCenter)
+                                                                    _sigModifier(_mCenter),
+                                                                    _MIDIReceiver(_mCenter, pMidiIODeviceManager),
+                                                                    _MIDISender(pMidiIODeviceManager),
+                                                                    _nRecv(_mCenter)
 {    
     for (int i = 0; i < 64; i++) {
         
