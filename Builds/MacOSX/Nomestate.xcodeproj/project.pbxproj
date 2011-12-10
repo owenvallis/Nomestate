@@ -971,8 +971,8 @@
 				246AE11C43AE4D4461CE5CEE,
 				28FEB8D0CF966887675DFB1A ); name = "Signal Utils"; sourceTree = "<group>"; };
 		3EE638059CE34E4DD01C8439 = { isa = PBXGroup; children = (
-				C358BD7C185D770100C9DE55,
-				B6C2520ADBAF0E7C677840BA ); name = "MIDI IO Utils"; sourceTree = "<group>"; };
+				B6C2520ADBAF0E7C677840BA,
+				C358BD7C185D770100C9DE55 ); name = "MIDI IO Utils"; sourceTree = "<group>"; };
 		E3E12E2A214B47C74E32D42A = { isa = PBXGroup; children = (
 				28E8A15A867B81B15A560D47,
 				E52A952285EEB495E58A137D ); name = PropertyGroup; sourceTree = "<group>"; };
