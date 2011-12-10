@@ -20,6 +20,9 @@ NetworkSender::NetworkSender()
     serverHostPort.referTo(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentHostPort", NULL));
     serverHostPort.addListener(this);
     
+    rotation.referTo(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL));
+    rotation.addListener(this);
+    
     setup("localhost", serverHostPort.getValue());
 }
 
@@ -80,6 +83,15 @@ void NetworkSender::valueChanged(Value& value)
         oscMsgB.addIntArg(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentListenPort", NULL).getValue());
         sendMessage(oscMsgB);
         
+    }
+    
+    else if (value.refersToSameSourceAs(rotation))
+    {
+        DBG("Rotation: " + PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL).getValue().toString());
+        OSCMessage oscMsg;        
+        oscMsg.setAddress("/sys/rotation");
+        oscMsg.addIntArg(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL).getValue());
+        sendMessage(oscMsg);
     }
 
 }

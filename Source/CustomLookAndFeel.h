@@ -46,6 +46,9 @@ private:
                            const bool flatOnRight,
                            const bool flatOnTop,
                            const bool flatOnBottom) throw();
+    
+    void drawPropertyComponentLabel	(Graphics& g, int width, 
+                                     int height, PropertyComponent &component);	
 	
     
 };

@@ -132,3 +132,10 @@ void CustomLookAndFeel::drawGlassLozenge (Graphics& g,
 	g.setColour (Colour(0xff465366) );
 	g.drawRect (intX, intY, intW, intH, 1);	
 }
+
+void CustomLookAndFeel::drawPropertyComponentLabel	(Graphics& g, int width, int height,
+                                                     PropertyComponent& component)
+{
+    g.setColour(Colour(81,81,81));
+    g.fillAll();
+}

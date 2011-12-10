@@ -19,6 +19,7 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
     connectedDevices.setProperty(Identifier("currentdevice"), "No Device Connected", NULL);
     connectedDevices.setProperty(Identifier("currentHostPort"), 8080, NULL);
     connectedDevices.setProperty(Identifier("currentListenPort"), 8000, NULL);
+    connectedDevices.setProperty(Identifier("rotation"), "right", NULL);
     
     mainPropertyGroup = new PropertyGroup("mainGroup","ButtonProperties");
     mainPropertyGroup->addProperty(buttonMode);

@@ -20,7 +20,7 @@ class DeviceTabComponent  :   public Component,
 {
 public:
     //==============================================================================
-    DeviceTabComponent (SignalCore& sCore);
+    DeviceTabComponent ();
     ~DeviceTabComponent();
 	
     //==============================================================================
@@ -34,19 +34,25 @@ public:
     void textEditorFocusLost (TextEditor &editor){};
     
 private:
+        
+    ScopedPointer<ChoicePropertyComponent>  devices;
+    Label                                   setConnectedDevice;
     
-    SignalCore*                 _sCore;
-    
-    ScopedPointer<ChoicePropertyComponent>    devices;
-    Label                                     setConnectedDevice;
+    ScopedPointer<ChoicePropertyComponent>  rotation;
+    Label                                   setRotationLabel;
     
     TextEditor                              setListenPort;    
-    Label                       setListenPortLabel;
-    TextEditor                  setHostPort;    
-    Label                       setHostPortLabel;
+    Label                                   setListenPortLabel;
+    TextEditor                              setHostPort;    
+    Label                                   setHostPortLabel;
     
-    StringArray                 deviceNames;
-    Array<var>                  connectedDevices;
+    StringArray                             deviceNames;
+    Array<var>                              connectedDevices;
+    
+    StringArray                             rotationNames;
+    Array<var>                              rotationNamesVars;
+    
+    void setupRotationList();
 
 };
 
