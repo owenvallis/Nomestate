@@ -21,7 +21,6 @@ MainComponent::MainComponent() : propertyEditor(PropertiesManager::getInstance()
 	gridY = 8;
 	gridSize = gridX * gridY;
 	
-	
 	//add 64 buttons
 	for (int i=0; i<gridSize; i++)
 	{
@@ -31,7 +30,9 @@ MainComponent::MainComponent() : propertyEditor(PropertiesManager::getInstance()
 		button->addChangeListener(this);
 		buttonManager.add(button);
         PropertiesManager::getInstance()->registerButton(button);
-        buttonManager[i]->getValueObject().referTo ( PropertiesManager::getInstance()->getButtonPropertyContainer(i)->getGroupProperty(Identifier("Colour"),PropertyDescriptor(Identifier("Colour"), "Colour", Identifier("Colour")))); // this is ugly
+        buttonManager[i]->getColourValueObject().referTo ( PropertiesManager::getInstance()->getButtonPropertyContainer(i)->getGroupProperty(Identifier("Colour"),PropertyDescriptor(Identifier("Colour"), "Colour", Identifier("Colour")))); // this is ugly
+        
+        buttonManager[i]->getButtonModeValueObject().referTo ( PropertiesManager::getInstance()->getButtonPropertyContainer(i)->getGroupProperty(Identifier("ButtonMode"),PropertyDescriptor(Identifier("ButtonMode"), "ButtonMode", Identifier("ButtonMode")))); 
 	}
     
     clearButton.addListener(this);
@@ -54,7 +55,6 @@ void MainComponent::paint(Graphics& g) {
 }
 
 void MainComponent::resized() {
-    
     propertyEditor.setBounds(10,13,getWidth()/3, getHeight()-24);
     
     int buttonCounter = 0;
@@ -85,7 +85,7 @@ const PopupMenu MainComponent::getMenuForIndex (int menuIndex, const String& /*m
     if (menuIndex == 0) {
         menu.addItem(100, "Save");
         menu.addItem(101, "Load");
-        menu.addItem(102, "OSC Settings");
+        menu.addItem(102, "Settings");
     }
     
     return menu;
@@ -109,7 +109,7 @@ void MainComponent::menuItemSelected(int menuItemID, int topLevelMenuIndex){
 void MainComponent::openPreferences() {
 
     PreferencesComponent preferencesWindow(_sCore, _deviceManager);
-    DialogWindow::showModalDialog("Preferences", &preferencesWindow, this, Colours::black , true, true, true) ;
+    DialogWindow::showModalDialog("Preferences", &preferencesWindow, this, Colours::black , true, false, false) ;
         
 }
 
@@ -181,7 +181,7 @@ void MainComponent::showProperties(){
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "MAINCOMPONENT");
             
-            ledStateSignal->addStringArg("/box/grid/led/set");
+            ledStateSignal->addStringArg("/nomestate/grid/led/set");
             // get the x position: LED bumber % 8
             ledStateSignal->addIntArg(i % 8);
             // get the y position: LED number / 8
@@ -203,6 +203,15 @@ void MainComponent::showProperties(){
     propertyEditor.showPropertiesFor(PropertiesManager::getInstance()->getButtonsBeingEdited());
 }
 
+void MainComponent::setSerialOscPrefix() {
+    DBG("setting prefix: /nomestate");
+
+    Signal::SignalP prefixSignal = new Signal("SEND_OSC", "MAINCOMPONENT");
+    prefixSignal->addStringArg("/sys/prefix");
+    prefixSignal->addStringArg("/nomestate");
+    _sCore.getMessageCenter()->handleSignal(*prefixSignal);
+}
+
 void MainComponent::changeListenerCallback (ChangeBroadcaster* objectThatHasChanged) {
     showProperties();
 }
@@ -221,7 +230,7 @@ void MainComponent::buttonClicked (Button* buttonThatWasChanged) {
         // reference counted Signal ( string command, string origin )
         Signal::SignalP ledClearSignal = new Signal("SEND_OSC", "MAINCOMPONENT");
         
-        ledClearSignal->addStringArg("/box/grid/led/all");
+        ledClearSignal->addStringArg("/nomestate/grid/led/all");
         ledClearSignal->addIntArg(0);
         
         _sCore.getMessageCenter()->handleSignal(*ledClearSignal); 

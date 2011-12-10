@@ -37,7 +37,7 @@ bool SignalModifier::convertSignal(Signal &s)
     if(s.command == "SIGNAL_MOD") {
         // only listen to grid/key and /press
         if((int(PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getProperty("Pressure")) == 0 
-            && (s.getArgAsString(0) == "boxgridkey" || s.getArgAsString(0) == "boxpress")) )
+            && (s.getArgAsString(0) == "nomestategridkey" || s.getArgAsString(0) == "nomestatepress")) )
         {
             switch(int(PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getProperty("ButtonMode"))) // this seems ugly
             {
@@ -51,7 +51,7 @@ bool SignalModifier::convertSignal(Signal &s)
         
         // only listen to grid/pressure if pressure is selected
         else if ((int(PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getProperty("Pressure")) == 1 
-                  && s.getArgAsString(0) == "boxgridpressure") )
+                  && s.getArgAsString(0) == "nomestategridpressure") )
         { 
             DBG("pressure");
             switch(int(PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getProperty("ButtonMode"))) // this seems ugly
@@ -93,7 +93,7 @@ bool SignalModifier::convertToToggle(Signal &s)
         // reference counted Signal ( string command, string origin )
         Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
         
-        ledStateSignal->addStringArg("/box/grid/led/set");
+        ledStateSignal->addStringArg("/nomestate/grid/led/set");
         // get the x position: LED bumber % 8
         ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
         // get the y position: LED number / 8
@@ -123,7 +123,7 @@ bool SignalModifier::convertToTrigger(Signal &s)
     // reference counted Signal ( string command, string origin )
     Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
     
-    ledStateSignal->addStringArg("/box/grid/led/set");
+    ledStateSignal->addStringArg("/nomestate/grid/led/set");
     // get the x position: LED bumber % 8
     ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
     // get the y position: LED number / 8
@@ -152,7 +152,7 @@ bool SignalModifier::convertToNote(Signal &s)
     // reference counted Signal ( string command, string origin )
     Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
     
-    ledStateSignal->addStringArg("/box/grid/led/set");
+    ledStateSignal->addStringArg("/nomestate/grid/led/set");
     // get the x position: LED bumber % 8
     ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
     // get the y position: LED number / 8
@@ -198,7 +198,7 @@ bool SignalModifier::convertToTogglePressure(Signal &s)
         // reference counted Signal ( string command, string origin )
         Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
         
-        ledStateSignal->addStringArg("/box/grid/led/set");
+        ledStateSignal->addStringArg("/nomestate/grid/led/set");
         // get the x position: LED bumber % 8
         ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
         // get the y position: LED number / 8
@@ -228,7 +228,7 @@ bool SignalModifier::convertToTriggerPressure(Signal &s)
     // reference counted Signal ( string command, string origin )
     Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
     
-    ledStateSignal->addStringArg("/box/grid/led/set");
+    ledStateSignal->addStringArg("/nomestate/grid/led/set");
     // get the x position: LED bumber % 8
     ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
     // get the y position: LED number / 8
@@ -263,7 +263,7 @@ bool SignalModifier::convertToNotePressure(Signal &s)
     // reference counted Signal ( string command, string origin )
     Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
     
-    ledStateSignal->addStringArg("/box/grid/led/set");
+    ledStateSignal->addStringArg("/nomestate/grid/led/set");
     // get the x position: LED bumber % 8
     ledStateSignal->addIntArg(s.getArgAsInt32(1) % 8);
     // get the y position: LED number / 8

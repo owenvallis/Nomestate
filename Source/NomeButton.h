@@ -27,7 +27,8 @@ public:
     void    setButtonID(int buttonID) { _buttonID = buttonID;}
     int     getButtonID() { return _buttonID; }
     
-    Value&  getValueObject() { return buttonColour; }    
+    Value&  getColourValueObject() { return buttonColour; }  
+    Value&  getButtonModeValueObject() { return buttonMode; }
     void    valueChanged(Value& value);
 	
 	bool	isBeingEdited();
@@ -44,8 +45,10 @@ public:
 private:
     int         _buttonID;
     Value		buttonColour;
+    Value       buttonMode;
 	bool		isHovered;
 	bool		isSelected;
+    Label       buttonModeLabel;
 
 };
 

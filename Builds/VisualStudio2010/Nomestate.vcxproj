@@ -132,7 +132,7 @@
     <ClCompile Include="..\..\Libraries\osc\OscReceivedElements.cpp"/>
     <ClCompile Include="..\..\Libraries\osc\OscTypes.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
-    <ClCompile Include="..\..\Source\AbletonStyleOSCComponent.cpp"/>
+    <ClCompile Include="..\..\Source\DeviceTabComponent.cpp"/>
     <ClCompile Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp"/>
     <ClCompile Include="..\..\Source\MidiIOManagerComponent.cpp"/>
     <ClCompile Include="..\..\Source\PreferencesComponent.cpp"/>
@@ -1117,7 +1117,7 @@
     <ClInclude Include="..\..\Libraries\osc\OscPrintReceivedElements.h"/>
     <ClInclude Include="..\..\Libraries\osc\OscReceivedElements.h"/>
     <ClInclude Include="..\..\Libraries\osc\OscTypes.h"/>
-    <ClInclude Include="..\..\Source\AbletonStyleOSCComponent.h"/>
+    <ClInclude Include="..\..\Source\DeviceTabComponent.h"/>
     <ClInclude Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h"/>
     <ClInclude Include="..\..\Source\MidiIOManagerComponent.h"/>
     <ClInclude Include="..\..\Source\PreferencesComponent.h"/>

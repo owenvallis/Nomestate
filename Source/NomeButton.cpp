@@ -10,12 +10,18 @@
 
 #include "NomeButton.h"
 
-NomeButton::NomeButton()
+NomeButton::NomeButton() : buttonModeLabel("")
 {
 	isHovered = false;
 	isSelected = false;
 	
 	buttonColour.addListener(this);
+    buttonMode.addListener(this);
+    
+    addAndMakeVisible(&buttonModeLabel);
+    buttonModeLabel.setText("TO", false);
+    buttonModeLabel.setAlpha(0.5);
+    buttonModeLabel.setInterceptsMouseClicks(false, false);
 }
 
 NomeButton::~NomeButton()
@@ -28,7 +34,7 @@ void NomeButton::paint(Graphics& g)
     g.setColour(Colour::fromString(buttonColour.toString()));
     
     if (isHovered || isSelected){
-		g.fillRoundedRectangle(0,0,40,40,8);
+        g.fillRoundedRectangle(0,0,40,40,8);
 	} else {	
         g.fillRoundedRectangle(2, 2, 36, 36, 6);
     }
@@ -36,7 +42,7 @@ void NomeButton::paint(Graphics& g)
 
 void NomeButton::resized()
 {
-    
+    buttonModeLabel.setBounds(2, 0, 30, 20);
 }
 
 void NomeButton::valueChanged(Value& value)
@@ -45,6 +51,24 @@ void NomeButton::valueChanged(Value& value)
     {
         repaint();
     }
+    
+    else if (value.refersToSameSourceAs(buttonMode))
+    {
+        int bMode = value.getValue();
+        String labelText;
+        
+        if (bMode == 0 )
+            labelText = "TO";
+        else if (bMode == 1)
+            labelText = "TR";
+        else if (bMode == 2)
+            labelText = "NO";
+        
+        buttonModeLabel.setText(labelText, false);
+        repaint();
+    }
+    
+    buttonModeLabel.setColour(Label::textColourId, Colour::fromString(buttonColour.toString()).contrasting(1.0));
 }
 //------Property Groups-------------------------------------------------------------------------------------//
 

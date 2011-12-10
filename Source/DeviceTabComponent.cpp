@@ -1,33 +1,43 @@
 /*
   ==============================================================================
 
-    AbletonStyleOSCComponent.cpp
+    DeviceTabComponent.cpp
     Created: 5 Dec 2011 12:16:23pm
     Author:  Owen Vallis
 
   ==============================================================================
 */
 
-#include "AbletonStyleOSCComponent.h"
+#include "DeviceTabComponent.h"
 
-AbletonStyleOSCComponent::AbletonStyleOSCComponent() : setOSCPrefix("/box"),
-                                                       setOSCPrefixLabel(String::empty, "Set OSC Prefix:"),
-                                                       setConnectedDevice(String::empty, "Set Connected Device:"),
+DeviceTabComponent::DeviceTabComponent(SignalCore& sCore) : setConnectedDevice(String::empty, "Set Connected Device:"),
                                                        setListenPort("8000"),
-                                                       setListenPortLabel(String::empty, "Listen Port:")
+                                                       setListenPortLabel(String::empty, "Listen Port:"),
+                                                       setHostPort("8080"),
+                                                       setHostPortLabel(String::empty, "Host Port:")
 {
-    addAndMakeVisible (&setOSCPrefix);
-    setOSCPrefix.addListener(this);
-    setOSCPrefixLabel.setText("Set OSC Prefix", false);
-    
-    addAndMakeVisible (&setOSCPrefixLabel);
-    setOSCPrefixLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
-    setOSCPrefixLabel.setJustificationType (Justification::centredLeft);
-    setOSCPrefixLabel.setEditable (false, false, false);
-    setOSCPrefixLabel.setColour (TextEditor::textColourId, Colours::black);
-    setOSCPrefixLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
+    _sCore = &sCore;
+
     
     addAndMakeVisible(&setListenPort);
+    setListenPort.addListener(this);
+    
+    addAndMakeVisible(&setListenPortLabel);
+    setListenPortLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
+    setListenPortLabel.setJustificationType (Justification::centredLeft);
+    setListenPortLabel.setEditable (false, false, false);
+    setListenPortLabel.setColour (TextEditor::textColourId, Colours::black);
+    setListenPortLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
+    
+    addAndMakeVisible(&setHostPort);
+    setHostPort.addListener(this);
+    
+    addAndMakeVisible(&setHostPortLabel);
+    setHostPortLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
+    setHostPortLabel.setJustificationType (Justification::centredLeft);
+    setHostPortLabel.setEditable (false, false, false);
+    setHostPortLabel.setColour (TextEditor::textColourId, Colours::black);
+    setHostPortLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
     
     
     // This should also happen in the callback from clicking the combobox
@@ -48,37 +58,30 @@ AbletonStyleOSCComponent::AbletonStyleOSCComponent() : setOSCPrefix("/box"),
     setConnectedDevice.setEditable (false, false, false);
     setConnectedDevice.setColour (TextEditor::textColourId, Colours::black);
     setConnectedDevice.setColour (TextEditor::backgroundColourId, Colour (0x0));
-    //devices->setColour(ChoicePropertyComponent::backgroundColourId, Colours::black);
 
 }
 
-AbletonStyleOSCComponent::~AbletonStyleOSCComponent()
+DeviceTabComponent::~DeviceTabComponent()
 {
     
 }
 
-void AbletonStyleOSCComponent::paint (Graphics& g)
+void DeviceTabComponent::paint (Graphics& g)
 {
-    g.setColour (Colour (0xffaab2b7));
+    g.setColour (Colour (81,81,81));
     g.fillRect ((float) (proportionOfWidth (0.0000f)), 
 				(float) (proportionOfHeight (0.0000f)), 
 				(float) (proportionOfWidth (1.0000f)), 
 				(float) (proportionOfHeight (1.0000f)));
 	
-	g.setColour (Colour (0xff66738c));
-    g.drawRect ((proportionOfWidth (0.0000f)), 
-				(proportionOfHeight (0.0000f)), 
-				(proportionOfWidth (1.0000f)), 
-				(proportionOfHeight (1.0000f)), 1);
-	
-	g.setColour (Colour (0xff66738c));
+	g.setColour (Colour (0,0,0));
 	g.fillRect ((float) (proportionOfWidth (0.0500f)), 
 				(float) (proportionOfHeight (0.0500f)), 
 				(float) (proportionOfWidth (0.9000f)), 
 				18.0f);
 }
 
-void AbletonStyleOSCComponent::resized()
+void DeviceTabComponent::resized()
 {
     
     const int h = 18;
@@ -86,25 +89,32 @@ void AbletonStyleOSCComponent::resized()
 	const int dh = h + space;
 	int y = proportionOfHeight (0.0500f) + 18 + space;
     
-    ScopedPointer<Font> f(new Font(setOSCPrefixLabel.getFont ()));
-    int width = f->getStringWidth(setOSCPrefixLabel.getText() );
-    setOSCPrefixLabel.setBounds(proportionOfWidth (0.0500f),
-                                 y,
-                                 width + 10, h);
-    
-    setOSCPrefix.setBounds(proportionOfWidth (0.5800f) - 38, y, 100, 18.0f);
-    
-    f = new Font(setConnectedDevice.getFont ());
-    width = f->getStringWidth(setConnectedDevice.getText() );
+    ScopedPointer<Font> f(new Font(setConnectedDevice.getFont ()));
+    int width = f->getStringWidth(setConnectedDevice.getText() );
     setConnectedDevice.setBounds(proportionOfWidth (0.0500f),
                                 y + dh,
                                 width + 10, h);
-    
+        
     devices->setBounds(proportionOfWidth (0.5800f) - 38, y + dh, 100, 18.0f);
+    
+    
+    f = new Font(setListenPortLabel.getFont ());
+    width = f->getStringWidth(setListenPortLabel.getText() );
+    setListenPortLabel.setBounds(proportionOfWidth (0.0500f),
+                                y + (dh*2),
+                                width + 10, h);
     setListenPort.setBounds(proportionOfWidth(0.5800f) - 38, y + (dh*2), 100, 18.0f);
+    
+    
+    f = new Font(setHostPortLabel.getFont ());
+    width = f->getStringWidth(setHostPortLabel.getText() );
+    setHostPortLabel.setBounds(proportionOfWidth (0.0500f),
+                                 y + (dh*3),
+                                 width + 10, h);
+    setHostPort.setBounds(proportionOfWidth(0.5800f) - 38, y + (dh*3), 100, 18.0f);
 }
 
-void AbletonStyleOSCComponent::textEditorReturnKeyPressed (TextEditor &editor)
+void DeviceTabComponent::textEditorReturnKeyPressed (TextEditor &editor)
 {
     //send OSC to set /sys/prefix
     DBG("prefix changed...");

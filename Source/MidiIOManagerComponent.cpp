@@ -33,22 +33,19 @@ MidiIOManagerComponent::MidiIOManagerComponent (MidiIODeviceManager& deviceManag
     midiPorts->setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
     midiPorts->setJustificationType (Justification::centredLeft);
     midiPorts->setEditable (false, false, false);
-    midiPorts->setColour (TextEditor::textColourId, Colours::black);
-    midiPorts->setColour (TextEditor::backgroundColourId, Colour (0x0));
+    midiPorts->setColour (TextEditor::textColourId, Colours::lightgrey);
 	
 	addAndMakeVisible(note = new Label ("note", "Note"));
     note->setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
     note->setJustificationType (Justification::centredLeft);
     note->setEditable (false, false, false);
-    note->setColour (TextEditor::textColourId, Colours::black);
-    note->setColour (TextEditor::backgroundColourId, Colour (0x0));
+    note->setColour (TextEditor::textColourId, Colours::lightgrey);
 	
 	addAndMakeVisible(cc = new Label ("cc", "CC"));
     cc->setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
     cc->setJustificationType (Justification::centredLeft);
     cc->setEditable (false, false, false);
-    cc->setColour (TextEditor::textColourId, Colours::black);
-    cc->setColour (TextEditor::backgroundColourId, Colour (0x0));
+    cc->setColour (TextEditor::textColourId, Colours::lightgrey );
 }
 
 MidiIOManagerComponent::~MidiIOManagerComponent()
@@ -59,19 +56,13 @@ MidiIOManagerComponent::~MidiIOManagerComponent()
 //==============================================================================
 void MidiIOManagerComponent::paint (Graphics& g)
 {
-    g.setColour (Colour (0xffaab2b7));
+    g.setColour (Colour (81,81,81));
     g.fillRect ((float) (proportionOfWidth (0.0000f)), 
 				(float) (proportionOfHeight (0.0000f)), 
 				(float) (proportionOfWidth (1.0000f)), 
 				(float) (proportionOfHeight (1.0000f)));
 	
-	g.setColour (Colour (0xff66738c));
-    g.drawRect ((proportionOfWidth (0.0000f)), 
-				(proportionOfHeight (0.0000f)), 
-				(proportionOfWidth (1.0000f)), 
-				(proportionOfHeight (1.0000f)), 1);
-	
-	g.setColour (Colour (0xff66738c));
+	g.setColour (Colour (25,25,25));
 	g.fillRect ((float) (proportionOfWidth (0.0500f)), 
 				(float) (proportionOfHeight (0.0500f)), 
 				(float) (proportionOfWidth (0.9000f)), 
@@ -116,7 +107,7 @@ void MidiIOManagerComponent::resized()
 		midiInputLabel[i]->setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
 		midiInputLabel[i]->setJustificationType (Justification::centredLeft);
 		midiInputLabel[i]->setEditable (false, false, false);
-		midiInputLabel[i]->setColour (TextEditor::textColourId, Colours::black);
+		midiInputLabel[i]->setColour (TextEditor::textColourId, Colour(25,25,25).contrasting(1.0f));
 		midiInputLabel[i]->setColour (TextEditor::backgroundColourId, Colour (0x0));
 		
 		f = new Font(midiInputLabel[i]->getFont ());
@@ -143,7 +134,7 @@ void MidiIOManagerComponent::resized()
 		midiOutputLabel[i]->setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
 		midiOutputLabel[i]->setJustificationType (Justification::centredLeft);
 		midiOutputLabel[i]->setEditable (false, false, false);
-		midiOutputLabel[i]->setColour (TextEditor::textColourId, Colours::black);
+		midiOutputLabel[i]->setColour (TextEditor::textColourId, Colour(25,25,25).contrasting(1.0f));
 		midiOutputLabel[i]->setColour (TextEditor::backgroundColourId, Colour (0x0));
 		
 		f = new Font(midiOutputLabel[i]->getFont ());

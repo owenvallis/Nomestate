@@ -62,10 +62,10 @@
     <GROUP id="{F1CE0A87-E12F-CF1F-D886-55DF9B0FBBBD}" name="Source">
       <FILE id="p3O8i3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <GROUP id="{01A00411-75A4-31B9-EE41-A6BA732EA193}" name="Nomestate View">
-        <FILE id="xD5ysu" name="AbletonStyleOSCComponent.cpp" compile="1" resource="0"
-              file="Source/AbletonStyleOSCComponent.cpp"/>
-        <FILE id="JDHva3" name="AbletonStyleOSCComponent.h" compile="0" resource="0"
-              file="Source/AbletonStyleOSCComponent.h"/>
+        <FILE id="xD5ysu" name="DeviceTabComponent.cpp" compile="1" resource="0"
+              file="Source/DeviceTabComponent.cpp"/>
+        <FILE id="JDHva3" name="DeviceTabComponent.h" compile="0" resource="0"
+              file="Source/DeviceTabComponent.h"/>
         <FILE id="QzRNjF" name="AbletonStyleMidiMsgTypeIOComponent.cpp" compile="1"
               resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.cpp"/>
         <FILE id="CAwbkH" name="AbletonStyleMidiMsgTypeIOComponent.h" compile="0"

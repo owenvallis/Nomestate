@@ -334,7 +334,7 @@
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>Nomestate\Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\AbletonStyleOSCComponent.cpp">
+    <ClCompile Include="..\..\Source\DeviceTabComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp">
@@ -1512,7 +1512,7 @@
     <ClInclude Include="..\..\Libraries\osc\OscTypes.h">
       <Filter>Nomestate\Libraries\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\AbletonStyleOSCComponent.h">
+    <ClInclude Include="..\..\Source\DeviceTabComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h">

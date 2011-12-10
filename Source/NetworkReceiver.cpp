@@ -30,11 +30,16 @@ NetworkReceiver::~NetworkReceiver() {
 
 void NetworkReceiver::handleOSC() {
 
-	while( this->hasWaitingMessages() ){
-		OSCMessage m;
-		this->getNextMessage( &m );
-        oscToSignal(m); 
+    
+    while( this->hasWaitingMessages() ){
+        OSCMessage m;
+        this->getNextMessage( &m );
+        if(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue(Identifier("currentdevice"), NULL).toString() != "No Device Connected") 
+        {
+            oscToSignal(m); 
+        }
     }
+
     
 }
 
@@ -54,7 +59,8 @@ void NetworkReceiver::oscToSignal(OSCMessage msg) {
     Signal::SignalP mySignal = new Signal(cmd, origin);
     
     // if this an OSC button press, then lets ask for a SEND_MIDI
-    if(cmd == "boxgridkey" || cmd == "boxpress" || cmd == "boxgridpressure") {
+    if(cmd == "nomestategridkey" || cmd == "nomestatepress" || cmd == "nomestategridpressure") {
+        
         
         // set a SEND_MIDI
         mySignal->command = "SIGNAL_MOD";

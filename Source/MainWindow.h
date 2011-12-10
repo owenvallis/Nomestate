@@ -12,6 +12,7 @@
 #define __MAINWINDOW_H_4516A00A__
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "MainComponent.h"
 
 
 //==============================================================================
@@ -23,7 +24,8 @@ public:
     ~MainAppWindow();
 
     void closeButtonPressed();
-
+    
+    void activeWindowStatusChanged();
 
     /* Note: Be careful when overriding DocumentWindow methods - the base class
        uses a lot of them, so by overriding you might break its functionality.
@@ -33,6 +35,7 @@ public:
     */
 
 private:
+    MainComponent* mainComponent;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAppWindow)
 };

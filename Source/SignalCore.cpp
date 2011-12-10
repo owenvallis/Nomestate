@@ -57,7 +57,7 @@ void SignalCore::valueChanged(Value& value)
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledColourSignal = new Signal("SEND_OSC", "SIG_MOD");
             
-            ledColourSignal->addStringArg("/box/grid/led/color");
+            ledColourSignal->addStringArg("/nomestate/grid/led/color");
             // get the x position: LED bumber % 8
             ledColourSignal->addIntArg(i % 8);
             // get the y position: LED number / 8
@@ -74,7 +74,7 @@ void SignalCore::valueChanged(Value& value)
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledSetSignal = new Signal("SEND_OSC", "SIG_MOD");
             
-            ledSetSignal->addStringArg("/box/grid/led/set");
+            ledSetSignal->addStringArg("/nomestate/grid/led/set");
             // get the x position: LED bumber % 8
             ledSetSignal->addIntArg(i % 8);
             // get the y position: LED number / 8

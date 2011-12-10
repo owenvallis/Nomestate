@@ -1,27 +1,27 @@
 /*
   ==============================================================================
 
-    AbletonStyleOSCComponent.h
+    DeviceTabComponent.h
     Created: 5 Dec 2011 12:16:23pm
     Author:  Owen Vallis
 
   ==============================================================================
 */
 
-#ifndef __ABLETONSTYLEOSCCOMPONENT_H_3A13D744__
-#define __ABLETONSTYLEOSCCOMPONENT_H_3A13D744__
+#ifndef __DeviceTabComponent_H_3A13D744__
+#define __DeviceTabComponent_H_3A13D744__
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PropertiesManager.h"
+#include "SignalCore.h"
 
-
-class AbletonStyleOSCComponent  :   public Component,
-                                    public TextEditor::Listener
+class DeviceTabComponent  :   public Component,
+                              public TextEditor::Listener
 {
 public:
     //==============================================================================
-    AbletonStyleOSCComponent ();
-    ~AbletonStyleOSCComponent();
+    DeviceTabComponent (SignalCore& sCore);
+    ~DeviceTabComponent();
 	
     //==============================================================================
 	
@@ -35,18 +35,18 @@ public:
     
 private:
     
-    TextEditor       setOSCPrefix;    
-    Label            setOSCPrefixLabel;
+    SignalCore*                 _sCore;
     
     ScopedPointer<ChoicePropertyComponent>    devices;
-    Label            setConnectedDevice;
+    Label                                     setConnectedDevice;
     
-    TextEditor       setListenPort;    
-    Label            setListenPortLabel;
-
+    TextEditor                              setListenPort;    
+    Label                       setListenPortLabel;
+    TextEditor                  setHostPort;    
+    Label                       setHostPortLabel;
     
-    StringArray      deviceNames;
-    Array<var>       connectedDevices;
+    StringArray                 deviceNames;
+    Array<var>                  connectedDevices;
 
 };
 
@@ -54,4 +54,4 @@ private:
 
 
 
-#endif  // __ABLETONSTYLEOSCCOMPONENT_H_3A13D744__
+#endif  // __DeviceTabComponent_H_3A13D744__

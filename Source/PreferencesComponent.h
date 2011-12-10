@@ -33,7 +33,7 @@ public:
 	juce_UseDebuggingNewOperator
 	
 private:
-	SignalCore*                             _sCore;
+	//SignalCore*                             _sCore;
 	
 	//==========================================================================
 	ScopedPointer<TabbedComponent>			prefTabs;

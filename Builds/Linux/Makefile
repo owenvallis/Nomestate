@@ -51,7 +51,7 @@ OBJECTS := \
   $(OBJDIR)/OscReceivedElements_990f2ae6.o \
   $(OBJDIR)/OscTypes_5116aa15.o \
   $(OBJDIR)/Main_90ebc5c2.o \
-  $(OBJDIR)/AbletonStyleOSCComponent_c1e43bdf.o \
+  $(OBJDIR)/DeviceTabComponent_b12cf8e7.o \
   $(OBJDIR)/AbletonStyleMidiMsgTypeIOComponent_657aeade.o \
   $(OBJDIR)/MidiIOManagerComponent_e965e200.o \
   $(OBJDIR)/PreferencesComponent_df4d6ee.o \
@@ -144,9 +144,9 @@ $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	@echo "Compiling Main.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/AbletonStyleOSCComponent_c1e43bdf.o: ../../Source/AbletonStyleOSCComponent.cpp
+$(OBJDIR)/DeviceTabComponent_b12cf8e7.o: ../../Source/DeviceTabComponent.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling AbletonStyleOSCComponent.cpp"
+	@echo "Compiling DeviceTabComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/AbletonStyleMidiMsgTypeIOComponent_657aeade.o: ../../Source/AbletonStyleMidiMsgTypeIOComponent.cpp

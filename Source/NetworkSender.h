@@ -33,6 +33,7 @@ public:
     
 private:
     Value serverHostPort;
+    Value prefix;
      
 };
 

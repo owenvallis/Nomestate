@@ -9,7 +9,7 @@
 */
 
 #include "MainWindow.h"
-#include "MainComponent.h"
+//#include "MainComponent.h"
 
 //==============================================================================
 MainAppWindow::MainAppWindow()
@@ -18,7 +18,7 @@ MainAppWindow::MainAppWindow()
                   DocumentWindow::allButtons)
 {
     
-    MainComponent* mainComponent = new MainComponent();
+    mainComponent = new MainComponent();
    
 	setContentOwned (mainComponent, false);
     setMenuBar(mainComponent);
@@ -44,6 +44,15 @@ MainAppWindow::~MainAppWindow()
 #if JUCE_MAC  // ..and also the main bar if we're using that on a Mac...
     MenuBarModel::setMacMainMenu (0);
 #endif
+}
+
+void MainAppWindow::activeWindowStatusChanged(){
+    if (isActiveWindow()) {
+        DBG("Window focused and ready to update prefix");
+        if (mainComponent != nullptr) {
+            mainComponent->setSerialOscPrefix();
+        }
+    }
 }
 
 void MainAppWindow::closeButtonPressed()

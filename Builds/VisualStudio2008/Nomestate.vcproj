@@ -159,8 +159,8 @@
       <Filter Name="Source">
         <File RelativePath="..\..\Source\Main.cpp"/>
         <Filter Name="Nomestate View">
-          <File RelativePath="..\..\Source\AbletonStyleOSCComponent.cpp"/>
-          <File RelativePath="..\..\Source\AbletonStyleOSCComponent.h"/>
+          <File RelativePath="..\..\Source\DeviceTabComponent.cpp"/>
+          <File RelativePath="..\..\Source\DeviceTabComponent.h"/>
           <File RelativePath="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp"/>
           <File RelativePath="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h"/>
           <File RelativePath="..\..\Source\MidiIOManagerComponent.cpp"/>

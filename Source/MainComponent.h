@@ -54,6 +54,8 @@ public:
     const StringArray getMenuBarNames();
 	const PopupMenu getMenuForIndex	(int topLevelMenuIndex, const String &menuName);
 	void menuItemSelected	(int menuItemID, int topLevelMenuIndex);	
+    
+    void setSerialOscPrefix();
 	
 private:
     
@@ -76,7 +78,6 @@ private:
 	OwnedArray <NomeButton>				buttonManager;
     
     TextButton                          clearButton;
-    
     String                              fileExtension;
     
 	int									gridSize;
