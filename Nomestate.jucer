@@ -171,10 +171,10 @@
         </GROUP>
       </GROUP>
       <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="MIDI IO Utils">
-        <FILE id="SLuvEs" name="MidiIODeviceManager.h" compile="0" resource="0"
-              file="Source/MidiIODeviceManager.h"/>
         <FILE id="Oc5NUl" name="MidiIODeviceManager.cpp" compile="1" resource="0"
               file="Source/MidiIODeviceManager.cpp"/>
+        <FILE id="SLuvEs" name="MidiIODeviceManager.h" compile="0" resource="0"
+              file="Source/MidiIODeviceManager.h"/>
       </GROUP>
       <GROUP id="{B6F81B48-7B94-692F-5E3F-117F1A1E71FC}" name="Button Properties">
         <FILE id="sPmafl" name="ButtonPropertyContainer.h" compile="0" resource="0"

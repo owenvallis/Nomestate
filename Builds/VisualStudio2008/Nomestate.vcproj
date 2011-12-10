@@ -239,8 +239,8 @@
           </Filter>
         </Filter>
         <Filter Name="MIDI IO Utils">
-          <File RelativePath="..\..\Source\MidiIODeviceManager.h"/>
           <File RelativePath="..\..\Source\MidiIODeviceManager.cpp"/>
+          <File RelativePath="..\..\Source\MidiIODeviceManager.h"/>
         </Filter>
         <Filter Name="Button Properties">
           <File RelativePath="..\..\Source\ButtonPropertyContainer.h"/>
