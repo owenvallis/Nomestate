@@ -180,10 +180,6 @@
             <FILE id="bKOmKr" name="OSCMessage.h" compile="0" resource="0" file="Source/OSCMessage.h"/>
           </GROUP>
         </GROUP>
-        <FILE id="HTIpdy" name="StoredSettings.cpp" compile="1" resource="0"
-              file="Source/StoredSettings.cpp"/>
-        <FILE id="Ji5VJP" name="StoredSettings.h" compile="0" resource="0"
-              file="Source/StoredSettings.h"/>
       </GROUP>
       <GROUP id="{2AB55B3F-218A-82B5-2A40-CF76A2F6AFA3}" name="ZeroConf Core">
         <FILE id="f1iyUu" name="ZeroConfResolve.cpp" compile="1" resource="0"

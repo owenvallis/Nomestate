@@ -158,7 +158,6 @@
     <ClCompile Include="..\..\Source\OSCBundle.cpp"/>
     <ClCompile Include="..\..\Source\OSCListener.cpp"/>
     <ClCompile Include="..\..\Source\OSCMessage.cpp"/>
-    <ClCompile Include="..\..\Source\StoredSettings.cpp"/>
     <ClCompile Include="..\..\Source\ZeroConfResolve.cpp"/>
     <ClCompile Include="..\..\Source\ZeroConfReceiver.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
@@ -1151,7 +1150,6 @@
     <ClInclude Include="..\..\Source\OSCBundle.h"/>
     <ClInclude Include="..\..\Source\OSCListener.h"/>
     <ClInclude Include="..\..\Source\OSCMessage.h"/>
-    <ClInclude Include="..\..\Source\StoredSettings.h"/>
     <ClInclude Include="..\..\Source\ZeroConfResolve.h"/>
     <ClInclude Include="..\..\Source\ZeroConfReceiver.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

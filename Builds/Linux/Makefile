@@ -77,7 +77,6 @@ OBJECTS := \
   $(OBJDIR)/OSCBundle_341fc942.o \
   $(OBJDIR)/OSCListener_6ac05db4.o \
   $(OBJDIR)/OSCMessage_2d11b191.o \
-  $(OBJDIR)/StoredSettings_dfdf196f.o \
   $(OBJDIR)/ZeroConfResolve_a5bbfec1.o \
   $(OBJDIR)/ZeroConfReceiver_ce82e104.o \
   $(OBJDIR)/juce_audio_basics_2442e4ea.o \
@@ -273,11 +272,6 @@ $(OBJDIR)/OSCListener_6ac05db4.o: ../../Source/OSCListener.cpp
 $(OBJDIR)/OSCMessage_2d11b191.o: ../../Source/OSCMessage.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling OSCMessage.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/StoredSettings_dfdf196f.o: ../../Source/StoredSettings.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling StoredSettings.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/ZeroConfResolve_a5bbfec1.o: ../../Source/ZeroConfResolve.cpp

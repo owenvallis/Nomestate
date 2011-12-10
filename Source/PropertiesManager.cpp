@@ -28,9 +28,7 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
     
     for (int i=0; i<64; i++) {
         buttonPropertyCollection.add(new ButtonPropertyContainer(i)); 
-    }
-    //std::cout<< buttonPropertyCollection.size() << std::endl;
-    
+    }    
 }
 
 PropertiesManager::~PropertiesManager()

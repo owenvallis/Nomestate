@@ -246,8 +246,6 @@
               <File RelativePath="..\..\Source\OSCMessage.h"/>
             </Filter>
           </Filter>
-          <File RelativePath="..\..\Source\StoredSettings.cpp"/>
-          <File RelativePath="..\..\Source\StoredSettings.h"/>
         </Filter>
         <Filter Name="ZeroConf Core">
           <File RelativePath="..\..\Source\ZeroConfResolve.cpp"/>

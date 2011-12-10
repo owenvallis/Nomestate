@@ -415,9 +415,6 @@
     <ClCompile Include="..\..\Source\OSCMessage.cpp">
       <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\StoredSettings.cpp">
-      <Filter>Nomestate\Source\Utility</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\ZeroConfResolve.cpp">
       <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClCompile>
@@ -1616,9 +1613,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCMessage.h">
       <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\StoredSettings.h">
-      <Filter>Nomestate\Source\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ZeroConfResolve.h">
       <Filter>Nomestate\Source\ZeroConf Core</Filter>

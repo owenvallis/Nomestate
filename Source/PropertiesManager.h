@@ -11,6 +11,8 @@
 #ifndef __PROPERTIESMANAGER_H_EC1B2AD7__
 #define __PROPERTIESMANAGER_H_EC1B2AD7__
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
 #include "PropertyGroup.h"
 #include "ButtonPropertyContainer.h"
 #include "NomeButton.h"
