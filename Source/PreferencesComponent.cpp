@@ -16,7 +16,7 @@
 PreferencesComponent::PreferencesComponent (SignalCore& sCore, MidiIODeviceManager& deviceManager) 
 {
 	addAndMakeVisible(prefTabs = new TabbedComponent(TabbedButtonBar::TabsAtLeft) );
-    prefTabs->addTab("Device", Colour(81,81,81), new DeviceTabComponent(sCore), true);                           
+    prefTabs->addTab("Device", Colour(81,81,81), new DeviceTabComponent(), true);                           
 	prefTabs->addTab("Midi", Colour(81,81,81), new MidiIOManagerComponent(deviceManager), true);
     prefTabs->setCurrentTabIndex (0);
     

@@ -34,6 +34,8 @@ public:
 private:
     Value serverHostPort;
     Value prefix;
+    Value rotation;
+
      
 };
 

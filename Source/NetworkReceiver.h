@@ -35,7 +35,7 @@ public:
     
 private:
     Value serverListenPort;
-
+    
     MessageCenter *_mCenter; 
     
     JUCE_LEAK_DETECTOR(NetworkReceiver);      
