@@ -50,6 +50,9 @@ public:
     {
         // Do your application's shutdown code here..
         mainWindow = 0;
+        appProperties->closeFiles();
+        
+        deleteAndZero (appProperties);
     }
 
     //==============================================================================
