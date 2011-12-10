@@ -44,7 +44,7 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
             
-            ledStateSignal->addStringArg("/box/grid/led/set");
+            ledStateSignal->addStringArg("/nomestate/grid/led/set");
             // get the x position: LED bumber % 8
             ledStateSignal->addIntArg(message.getControllerNumber() % 8);
             // get the y position: LED number / 8
@@ -62,20 +62,6 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
         } 
         else if (message.isNoteOn() && _MidiDeviceManager->isNoteEnabled(devicePos, true))
         {            
-            // reference counted Signal ( string command, string origin )
-            Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
-            
-            ledStateSignal->addStringArg("/box/grid/led/set");
-            // get the x position: LED bumber % 8
-            ledStateSignal->addIntArg(message.getNoteNumber() % 8);
-            // get the y position: LED number / 8
-            ledStateSignal->addIntArg(message.getNoteNumber() / 8);
-            // get the LED state: toggleState
-            
-            ledStateSignal->addIntArg(1);
-            
-            _mCenter->handleSignal(*ledStateSignal); 
-            
             // lets set the color based off MIDI note Velocity
             int MIDIVelocity = message.getVelocity();
             int r = 0;
@@ -117,11 +103,11 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
                     r = 127;				
                 }
             }
-                    
+            
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledColourSignal = new Signal("SEND_OSC", "RCV_MIDI");
             
-            ledColourSignal->addStringArg("/box/grid/led/color");
+            ledColourSignal->addStringArg("/nomestate/grid/led/color");
             // get the x position: LED bumber % 8
             ledColourSignal->addIntArg(message.getNoteNumber() % 8);
             // get the y position: LED number / 8
@@ -135,13 +121,28 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             
             _mCenter->handleSignal(*ledColourSignal);
             
+            // reference counted Signal ( string command, string origin )
+            Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
+            
+            ledStateSignal->addStringArg("/nomestate/grid/led/set");
+            // get the x position: LED bumber % 8
+            ledStateSignal->addIntArg(message.getNoteNumber() % 8);
+            // get the y position: LED number / 8
+            ledStateSignal->addIntArg(message.getNoteNumber() / 8);
+            // get the LED state: toggleState
+            
+            ledStateSignal->addIntArg(1);
+            
+            _mCenter->handleSignal(*ledStateSignal); 
+            
+            
         }
         else if (message.isNoteOff() && _MidiDeviceManager->isNoteEnabled(devicePos, true))
         {             
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
             
-            ledStateSignal->addStringArg("/box/grid/led/set");
+            ledStateSignal->addStringArg("/nomestate/grid/led/set");
             // get the x position: LED bumber % 8
             ledStateSignal->addIntArg(message.getNoteNumber() % 8);
             // get the y position: LED number / 8
