@@ -15,7 +15,8 @@
 #include "PropertiesManager.h"
 #include "SignalCore.h"
 
-class DeviceTabComponent  :   public Component
+class DeviceTabComponent  :   public Component,
+                              public ValueTree::Listener
 {
 public:
     //==============================================================================
@@ -26,6 +27,17 @@ public:
 	
     void paint (Graphics& g);
     void resized();
+    
+    // 	This method is called when a property of this node (or of one of its sub-nodes) has changed. 
+    void 	valueTreePropertyChanged (ValueTree &treeWhosePropertyHasChanged, const Identifier &property);
+    //  This method is called when a child sub-tree is added. 
+    void 	valueTreeChildAdded (ValueTree &parentTree, ValueTree &childWhichHasBeenAdded) {}
+    // This method is called when a child sub-tree is removed. 
+    void 	valueTreeChildRemoved (ValueTree &parentTree, ValueTree &childWhichHasBeenRemoved);
+    // This method is called when a tree's children have been re-shuffled. 
+    void 	valueTreeChildOrderChanged (ValueTree &parentTreeWhoseChildrenHaveMoved) {}
+    // This method is called when a tree has been added or removed from a parent node. 
+    void 	valueTreeParentChanged (ValueTree &treeWhoseParentHasChanged) {}
     
 private:
         
@@ -47,6 +59,7 @@ private:
     Array<var>                              rotationNamesVars;
     
     void setupRotationList();
+    void setupDeviceList();
 
 };
 
