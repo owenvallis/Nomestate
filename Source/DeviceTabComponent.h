@@ -33,6 +33,7 @@ public:
     void textEditorEscapeKeyPressed (TextEditor &editor){};
     void textEditorFocusLost (TextEditor &editor){};
     
+    
 private:
         
     ScopedPointer<ChoicePropertyComponent>  devices;

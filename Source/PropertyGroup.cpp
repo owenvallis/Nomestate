@@ -372,12 +372,28 @@ void PropertyGroupLibrary::registerPropertyGroup (PropertyGroup* newAspect)
 		if (existing == newAspect)
 			return; // already there...
 
-		// don't want a clash... remove or assert? let's try both...
+		 //don't want a clash... remove or assert? let's try both...
 		propertyGroups.removeObject (existing);
 		jassertfalse;
 	}
 	
 	propertyGroups.add (newAspect);
+}
+
+void PropertyGroupLibrary::unregisterPropertyGroup (PropertyGroup* newAspect)
+{
+	PropertyGroup* existing = getPropertyGroup (newAspect->getId());
+	if (existing)
+	{
+        for (int i=0; i<propertyGroups.size(); i++) {
+            if (propertyGroups[i] == existing) {
+                propertyGroups.remove(i, false);
+            }
+        }
+		//jassertfalse;
+	}
+	
+	//propertyGroups.add (newAspect);
 }
 
 int PropertyGroupLibrary::getNumPropertyGroups () const

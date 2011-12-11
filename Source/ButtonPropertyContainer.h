@@ -33,8 +33,11 @@ public:
     
     void    getPropertyGroups (PropertyGroup::IdList& groupIds)
     {
-        groupIds.add("mainGroup");
+        //groupIds.add("mainGroup");
+        groupIds.add("nomeGroup");
+        groupIds.add("chronomeGroup");
     }
+    
     
 	Value	getGroupProperty (const Identifier& groupId, const PropertyDescriptor& propInfo)
     {
