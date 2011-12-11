@@ -40,16 +40,12 @@ DeviceTabComponent::DeviceTabComponent() :  setConnectedDevice(String::empty, "S
     setHostPortLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
     
     
-    // This should also happen in the callback from clicking the combobox
-    for (int i = 0; i < PropertiesManager::getInstance()->connectedDevices.getNumChildren(); i++) {
-        Value value(PropertiesManager::getInstance()->connectedDevices.getChild(i).getPropertyAsValue(Identifier("deviceName"), NULL));
-        deviceNames.add(value.toString());
-        connectedDevices.add(value.getValue());
-        DBG(value.toString());
-    }
+    setupDeviceList();
   
-    addAndMakeVisible( devices = new ChoicePropertyComponent (PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentdevice", NULL), 
-                                                              " ", deviceNames, connectedDevices));
+    addAndMakeVisible( devices = new ChoicePropertyComponent(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentdevice", NULL), 
+                                                              " ", 
+                                                             deviceNames, 
+                                                             connectedDevices));
     addAndMakeVisible (&setConnectedDevice);
     setConnectedDevice.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
     setConnectedDevice.setJustificationType (Justification::centredLeft);
@@ -58,8 +54,11 @@ DeviceTabComponent::DeviceTabComponent() :  setConnectedDevice(String::empty, "S
     setConnectedDevice.setColour (TextEditor::backgroundColourId, Colour (0x0));
     
     setupRotationList();
-    addAndMakeVisible( rotation = new ChoicePropertyComponent (PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL), 
-                                                              " ", rotationNames, rotationNamesVars));
+    
+    addAndMakeVisible( rotation = new ChoicePropertyComponent(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL), 
+                                                              " ", 
+                                                              rotationNames, 
+                                                              rotationNamesVars));
     addAndMakeVisible (&setRotationLabel);
     setRotationLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
     setRotationLabel.setJustificationType (Justification::centredLeft);
@@ -67,11 +66,12 @@ DeviceTabComponent::DeviceTabComponent() :  setConnectedDevice(String::empty, "S
     setRotationLabel.setColour (TextEditor::textColourId, Colours::black);
     setRotationLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
     
+    PropertiesManager::getInstance()->connectedDevices.addListener(this);
 }
 
 DeviceTabComponent::~DeviceTabComponent()
 {
-    
+    PropertiesManager::getInstance()->connectedDevices.removeListener(this);
 }
 
 void DeviceTabComponent::paint (Graphics& g)
@@ -136,5 +136,58 @@ void DeviceTabComponent::setupRotationList()
     rotationNames.add("left");
     for (int i = 0; i<rotationNames.size(); i++) {
         rotationNamesVars.add(var(i*90));
+    }
+}
+
+void DeviceTabComponent::setupDeviceList()
+{
+    deviceNames.clear();
+    connectedDevices.clear();
+    
+    for (int i = 0; i < PropertiesManager::getInstance()->connectedDevices.getNumChildren(); i++) {
+        Value value(PropertiesManager::getInstance()->connectedDevices.getChild(i).getPropertyAsValue(Identifier("deviceName"), NULL));
+        deviceNames.add(value.toString());
+        connectedDevices.add(value.getValue());
+    }
+}
+
+void DeviceTabComponent::valueTreePropertyChanged (ValueTree &treeWhosePropertyHasChanged, const Identifier &property)
+{
+    if(property == Identifier("deviceName"))
+    {
+        setupDeviceList();
+        
+        const MessageManagerLock mmLock;
+        
+        addAndMakeVisible (devices = new ChoicePropertyComponent(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentdevice", NULL), 
+                                                                 " ", deviceNames, connectedDevices));
+        
+        resized();
+        
+        DBG(PropertiesManager::getInstance()->connectedDevices.getNumChildren());
+        DBG(deviceNames.size());
+        if(deviceNames.size() > 0)
+            DBG(deviceNames[0]);
+    }
+}
+
+// This method is called when a child sub-tree is removed. 
+void DeviceTabComponent::valueTreeChildRemoved (ValueTree &parentTree, ValueTree &childWhichHasBeenRemoved) 
+{
+    if(parentTree == PropertiesManager::getInstance()->connectedDevices)
+    {
+        setupDeviceList();
+        
+        const MessageManagerLock mmLock;
+        
+        addAndMakeVisible (devices = new ChoicePropertyComponent(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentdevice", NULL), 
+                                                                 " ", deviceNames, connectedDevices));
+        
+        resized();
+        
+        DBG(PropertiesManager::getInstance()->connectedDevices.getNumChildren());
+        DBG(deviceNames.size());
+        if(deviceNames.size() > 0)
+            DBG(deviceNames[0]);
     }
 }
