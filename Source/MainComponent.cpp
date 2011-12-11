@@ -42,6 +42,13 @@ MainComponent::MainComponent() : propertyEditor(PropertiesManager::getInstance()
     	
     clearButton.setAlpha(0.1);
     
+    commandManager = new ApplicationCommandManager();
+    commandManager->registerAllCommandsForTarget(this);
+    commandManager->registerAllCommandsForTarget(JUCEApplication::getInstance());
+
+    commandManager->getKeyMappings()->resetToDefaultMappings();
+    addKeyListener(commandManager->getKeyMappings());
+    setApplicationCommandManagerToWatch(commandManager);
 }
 
 
@@ -83,29 +90,77 @@ const PopupMenu MainComponent::getMenuForIndex (int menuIndex, const String& /*m
     PopupMenu menu;
     
     if (menuIndex == 0) {
-        menu.addItem(100, "Save");
-        menu.addItem(101, "Load");
-        menu.addItem(102, "Settings");
+        menu.addCommandItem(commandManager, CommandIDs::save);
+        menu.addCommandItem(commandManager, CommandIDs::open);
+        menu.addCommandItem(commandManager, CommandIDs::preferences);
+        menu.addSeparator();
+        menu.addCommandItem (commandManager, StandardApplicationCommandIDs::quit);
     }
     
     return menu;
 }
 
 void MainComponent::menuItemSelected(int menuItemID, int topLevelMenuIndex){
-	if (menuItemID == 100){
-        saveFile();
-    }
+}
+
+void MainComponent::getAllCommands(Array<CommandID> &commands) {
+    //JUCEApplication::getInstance()->getAllCommands(commands);
+    commands.clear();
     
-    else if (menuItemID == 101){        
-        loadFile();
-    }
+    const CommandID ids[] = { CommandIDs::save,
+        CommandIDs::open,
+        CommandIDs::preferences,
+    };
     
-    else if (menuItemID == 102){
-        DBG("Preferences");
-        openPreferences();
+    commands.addArray (ids, numElementsInArray (ids));
+   
+}
+
+void MainComponent::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
+{
+    switch (commandID)
+    {
+        case CommandIDs::save:
+            result.setInfo ("Save...", "Saves a mapping configuration", CommandCategories::general, 0);
+            result.addDefaultKeypress ('s', ModifierKeys::commandModifier);
+            break;
+            
+        case CommandIDs::open:
+            result.setInfo ("Open...", "Opens a mapping configuration", CommandCategories::general, 0);
+            result.addDefaultKeypress ('o', ModifierKeys::commandModifier);
+            break;
+            
+        case CommandIDs::preferences:
+            result.setInfo ("Preferences...", "Shows the preferences panel.", CommandCategories::general, 0);
+            result.addDefaultKeypress ('p', ModifierKeys::commandModifier);
+            break;
+            
+        default:
+            //JUCEApplication::getInstance()->getCommandInfo (commandID, result);
+            break;
     }
 }
 
+bool MainComponent::perform(const InvocationInfo& info) {
+    DBG("command performed");
+    switch (info.commandID)
+    {
+        case CommandIDs::save:                  
+            saveFile(); 
+            break;
+        case CommandIDs::open:                  
+            loadFile(); 
+            break;
+        case CommandIDs::preferences:           
+            openPreferences(); 
+            break;
+            
+        //default: 
+            //return perform (info);
+    }
+    
+    return true;
+}
 
 void MainComponent::openPreferences() {
 
@@ -141,6 +196,7 @@ void MainComponent::loadFile(){
     clearButton.setAlpha(1.0);
 
 }
+
 
 void MainComponent::saveFile(){
     

@@ -81,8 +81,7 @@
               file="Source/ButtonPropertyContainer.h"/>
       </GROUP>
       <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="Nomestate View">
-        <FILE id="BSqPhg" name="GuiKeyCommands.h" compile="0" resource="0"
-              file="Source/GuiKeyCommands.h"/>
+        <FILE id="BSqPhg" name="CommandIDs.h" compile="0" resource="0" file="Source/CommandIDs.h"/>
         <FILE id="xD5ysu" name="DeviceTabComponent.cpp" compile="1" resource="0"
               file="Source/DeviceTabComponent.cpp"/>
         <FILE id="JDHva3" name="DeviceTabComponent.h" compile="0" resource="0"

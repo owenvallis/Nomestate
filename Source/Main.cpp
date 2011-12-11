@@ -83,7 +83,7 @@ public:
     {
         
     }
-
+    
 private:
     ScopedPointer <MainAppWindow> mainWindow;
     CustomLookAndFeel customLookAndFeel;

@@ -1527,7 +1527,7 @@
     <ClInclude Include="..\..\Source\ButtonPropertyContainer.h">
       <Filter>Nomestate\Source\Model</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\GuiKeyCommands.h">
+    <ClInclude Include="..\..\Source\CommandIDs.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DeviceTabComponent.h">
