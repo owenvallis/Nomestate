@@ -13,20 +13,19 @@
 //==============================================================================
 MidiMsgTypeIOComponent::MidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
 														  const String& midiDeviceName_, 
-														  int deviceNum_, bool input_)
+                                                        bool input_)
 	: Component ("MidiMsgTypeIOComponent"),
 	  deviceManager(deviceManager_),
 	  midiDeviceName(midiDeviceName_),
-	  deviceNum(deviceNum_),
 	  input(input_)
 {
     addAndMakeVisible (noteToggleButton = new ToggleButton ("note"));
-	noteToggleButton->setToggleState (deviceManager.isNoteEnabled(deviceNum, input), false);
+	noteToggleButton->setToggleState (deviceManager.isNoteEnabled(midiDeviceName_, input), false);
     noteToggleButton->setButtonText (String::empty);
     noteToggleButton->addListener (this);
 	
     addAndMakeVisible (ccToggleButton = new ToggleButton ("cc"));
-	ccToggleButton->setToggleState (deviceManager.isCcEnabled(deviceNum, input), false);
+	ccToggleButton->setToggleState (deviceManager.isCcEnabled(midiDeviceName_, input), false);
     ccToggleButton->setButtonText (String::empty);
     ccToggleButton->addListener (this);
 	
@@ -65,12 +64,11 @@ void MidiMsgTypeIOComponent::buttonClicked (Button* buttonThatWasClicked)
 	
     if (buttonThatWasClicked == noteToggleButton)
     {
-		deviceManager.setMidiNoteEnabled(midiDeviceName, deviceNum, input, buttonThatWasClicked->getToggleState());
+		deviceManager.setMidiNoteEnabled(midiDeviceName, input, buttonThatWasClicked->getToggleState());
     }
     else if (buttonThatWasClicked == ccToggleButton)
     {
-		deviceManager.setMidiCCEnabled(midiDeviceName, deviceNum, input, buttonThatWasClicked->getToggleState());
+		deviceManager.setMidiCCEnabled(midiDeviceName, input, buttonThatWasClicked->getToggleState());
 
     }
-
 }

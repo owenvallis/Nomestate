@@ -10,21 +10,30 @@
 
 #include "MidiIODeviceManager.h"
 
-MidiIODeviceManager::MidiIODeviceManager()
+
+MidiIODeviceManager::MidiIODeviceManager() : _midiInputEnabled("midiInputEnabled"),
+                                             _midiOutputEnabled("midiOutputEnabled"),
+                                             noteInputEnabled("noteInputEnabled"),
+                                             ccInputEnabled("ccInputEnabled"),
+                                             noteOutputEnabled("noteOutputEnabled"),
+                                             ccOutputEnabled("ccOutputEnabled"),
+                                             outputEnabled("outputEnabled")
 {
 	StringArray midiInputList = MidiInput::getDevices();
 	for(int i = 0; i < midiInputList.size(); i++)
 	{
-		inputNote.add(false);
-		inputCc.add(false);
+        _midiInputEnabled.addChild(ValueTree(Identifier(midiInputList[i].removeCharacters ("\"#@,;:<>*^|?\\/() "))), -1, NULL);
+        _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(noteInputEnabled, false, NULL);
+        _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(ccInputEnabled, false, NULL);
 	}
 	
 	StringArray midiOutputList = MidiOutput::getDevices();
 	for(int i = 0; i < midiOutputList.size(); i++)
 	{
-		outputNote.add(false);
-		outputCc.add(false);
-		outputEnabled.add(false);
+        _midiOutputEnabled.addChild(ValueTree(Identifier(midiInputList[i].removeCharacters ("\"#@,;:<>*^|?\\/() "))), -1, NULL);
+        _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(noteOutputEnabled, false, NULL);
+        _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(ccOutputEnabled, false, NULL);
+        _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(outputEnabled, false, NULL);
 	}	
 }
 
@@ -32,125 +41,175 @@ MidiIODeviceManager::~MidiIODeviceManager()
 {
 }
 
-void MidiIODeviceManager::setMidiNoteEnabled (const String& midiDeviceName, int devicePos, bool input, bool enabled)
+void MidiIODeviceManager::setMidiNoteEnabled (const String& midiDeviceName, bool input, bool enabled)
 {
+    String strippedMidiDeviceName = midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() ");
+    
 	if(input)
 	{	
-		if(devicePos < inputNote.size() )
+        // lets update our enabled midi input lists
+		if(_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).isValid() )
 		{
-			inputNote.set(devicePos, enabled);
-			if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-			else if(enabled == false && isMidiInputEnabled(midiDeviceName) == true && 
-					inputNote[devicePos] == false && inputCc[devicePos] == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
+			_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(noteInputEnabled, enabled, NULL);
 		}
 		else
 		{
-			DBG("device outside the range of inputNote");
+			DBG("adding new midi input to our list of available inputs");
+            
+            _midiInputEnabled.addChild(ValueTree(Identifier(strippedMidiDeviceName)), -1, NULL);
+            _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(noteInputEnabled, enabled, NULL);
+            _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(ccInputEnabled, false, NULL);
 		}
+        
+        // lets see if we need to turn the inputs on or off 
+        if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
+        {
+            // we want to start listening to midi from this input
+            setMidiInputEnabled(midiDeviceName, true);
+        }
+        else if(enabled == false 
+                && isMidiInputEnabled(midiDeviceName) == true 
+                && (bool)_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(noteInputEnabled, NULL).getValue() == false 
+                && (bool)_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(ccInputEnabled, NULL).getValue() == false)
+        {
+            // no one is listening to this midi device, so lets turn it off
+            setMidiInputEnabled(midiDeviceName, false);
+        }
+        
 	}
-	else
+	else if(!input)
 	{
 		
-		if(devicePos < outputNote.size() )
+		if(_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).isValid() )
 		{
-			outputNote.set(devicePos, enabled);
-			if(enabled == true && outputEnabled[devicePos] == false)
-			{
-				outputEnabled.set(devicePos,enabled);
-			}
-			else if(enabled == false && outputEnabled[devicePos] == true && 
-					outputNote[devicePos] == false && outputCc[devicePos] == false)
-			{
-				outputEnabled.set(devicePos, enabled);
-			}
-			
-			sendChangeMessage ();
+			_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(noteOutputEnabled, enabled, NULL);
 		}
 		else
 		{
-			DBG("device outside the range of outputNote");
-		}		
+			DBG("adding new midi input to our list of available outputs");
+            
+            _midiOutputEnabled.addChild(ValueTree(Identifier(strippedMidiDeviceName)), -1, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(noteOutputEnabled, enabled, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(ccOutputEnabled, false, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(outputEnabled, false, NULL);
+		}	
+        
+        // lets see if we need to turn the outputs on or off 
+        if(enabled == true 
+           && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(outputEnabled, NULL).getValue()  == false)
+        {
+            // we want to start sending midi to this output
+            _midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(outputEnabled, true, NULL);
+        }
+        else if(enabled == false 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(outputEnabled, NULL).getValue()  == true 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(noteOutputEnabled, NULL).getValue() == false 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(ccOutputEnabled, NULL).getValue() == false)
+        {
+            // no one wants to send to this midi device, so lets turn it off
+            _midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(outputEnabled, false, NULL);
+        }
+        
+        sendChangeMessage ();
 	}
 }
 
-void MidiIODeviceManager::setMidiCCEnabled (const String& midiDeviceName, int devicePos, bool input, bool enabled)
+void MidiIODeviceManager::setMidiCCEnabled (const String& midiDeviceName, bool input, bool enabled)
 {
+    String strippedMidiDeviceName = midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() ");
+
 	if(input)
 	{	
-		if(devicePos < inputCc.size() )
+        // lets update our enabled midi input lists
+		if(_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).isValid() )
 		{
-			inputCc.set(devicePos, enabled);
-			if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-			else if(enabled == false && isMidiInputEnabled(midiDeviceName) == true && 
-					inputNote[devicePos] == false && inputCc[devicePos] == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
+			_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(ccInputEnabled, enabled, NULL);
 		}
 		else
 		{
-			DBG("device outside the range of inputNote");
+			DBG("adding new midi input to our list of available inputs");
+            
+            _midiInputEnabled.addChild(ValueTree(Identifier(strippedMidiDeviceName)), -1, NULL);
+            _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(noteInputEnabled, false, NULL);
+            _midiInputEnabled.getChild(_midiInputEnabled.getNumChildren()-1).setProperty(ccInputEnabled, enabled, NULL);
 		}
+        
+        // lets see if we need to turn the inputs on or off 
+        if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
+        {
+            // we want to start listening to midi from this input
+            setMidiInputEnabled(midiDeviceName, true);
+        }
+        else if(enabled == false 
+                && isMidiInputEnabled(midiDeviceName) == true 
+                && (bool)_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(noteInputEnabled, NULL).getValue() == false 
+                && (bool)_midiInputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(ccInputEnabled, NULL).getValue() == false)
+        {
+            // no one is listening to this midi device, so lets turn it off
+            setMidiInputEnabled(midiDeviceName, false);
+        }
 	}
-	else
+	else if(!input)
 	{
 		
-		if(devicePos < outputCc.size() )
+		if(_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).isValid() )
 		{
-			outputCc.set(devicePos, enabled);
-			if(enabled == true && outputEnabled[devicePos] == false)
-			{
-				outputEnabled.set(devicePos,enabled);
-			}
-			else if(enabled == false && outputEnabled[devicePos] == true && 
-					outputNote[devicePos] == false && outputCc[devicePos] == false)
-			{
-				outputEnabled.set(devicePos, enabled);
-			}
-			
-			sendChangeMessage ();
+			_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(ccOutputEnabled, enabled, NULL);
 		}
 		else
 		{
-			DBG("device outside the range of outputNote");
-		}		
-	}
-}
+			DBG("adding new midi input to our list of available outputs");
+            
+            _midiOutputEnabled.addChild(ValueTree(Identifier(strippedMidiDeviceName)), -1, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(noteOutputEnabled, false, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(ccOutputEnabled, enabled, NULL);
+            _midiOutputEnabled.getChild(_midiOutputEnabled.getNumChildren()-1).setProperty(outputEnabled, false, NULL);
+		}	
+        
+        // lets see if we need to turn the outputs on or off 
+        if(enabled == true 
+           && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(outputEnabled, NULL).getValue()  == false)
+        {
+            // we want to start sending midi to this output
+            _midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(outputEnabled, true, NULL);
+        }
+        else if(enabled == false 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(outputEnabled, NULL).getValue()  == true 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(noteOutputEnabled, NULL).getValue() == false 
+                && (bool)_midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).getPropertyAsValue(ccOutputEnabled, NULL).getValue() == false)
+        {
+            // no one wants to send to this midi device, so lets turn it off
+            _midiOutputEnabled.getChildWithName(Identifier(strippedMidiDeviceName)).setProperty(outputEnabled, false, NULL);
+        }
+        
+        sendChangeMessage ();
+	}}
 
-bool MidiIODeviceManager::isNoteEnabled (int devicePos_, bool input)
+bool MidiIODeviceManager::isNoteEnabled (String midiDeviceName, bool input)
 {
 	if(input)
-		return inputNote[devicePos_];
+		return _midiInputEnabled.getChildWithName(Identifier(midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() "))).getPropertyAsValue(noteInputEnabled, NULL).getValue();
 	
 	else if(!input)
-		return outputNote[devicePos_];
+		return _midiOutputEnabled.getChildWithName(Identifier(midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() "))).getPropertyAsValue(noteOutputEnabled, NULL).getValue();
 	
 	return false;
 }
 
-bool MidiIODeviceManager::isCcEnabled (int devicePos_, bool input)
+bool MidiIODeviceManager::isCcEnabled (String midiDeviceName, bool input)
 {
 	if(input)
-		return inputCc[devicePos_];
+		return _midiInputEnabled.getChildWithName(Identifier(midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() "))).getPropertyAsValue(ccInputEnabled, NULL).getValue();
 	
 	else if(!input)
-		return outputCc[devicePos_];
+		return _midiOutputEnabled.getChildWithName(Identifier(midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() "))).getPropertyAsValue(ccOutputEnabled, NULL).getValue();
 	
 	return false;
 }
 
-bool MidiIODeviceManager::isMidiOutputEnabled (int devicePos_)
+bool MidiIODeviceManager::isMidiOutputEnabled (String midiDeviceName)
 {	
-	return outputEnabled[devicePos_];
+	return _midiOutputEnabled.getChildWithName(Identifier(midiDeviceName.removeCharacters ("\"#@,;:<>*^|?\\/() "))).getPropertyAsValue(outputEnabled, NULL).getValue();
 }
 
 //************************ Saving state 

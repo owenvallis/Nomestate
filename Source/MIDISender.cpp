@@ -39,11 +39,14 @@ bool MIDISender::sendNoteOn(int channel, int noteNumber, uint8 velocity) {
     
     MidiMessage msg(juce::MidiMessage::noteOn(channel, noteNumber, velocity));
     
-    for(int device = 0; device < MidiOutput::getDevices().size(); device++) {
+    StringArray midiDeviceNames = MidiOutput::getDevices();
+    
+    for(int midiDevice = 0; midiDevice < midiDeviceNames.size(); midiDevice++) 
+    {
         
-        if(_pDeviceManager->isNoteEnabled(device, false))
+        if(_pDeviceManager->isNoteEnabled(midiDeviceNames[midiDevice], false))
         {
-            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(device)); 
+            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(midiDevice)); 
     
             MIDI_OUT->sendMessageNow(msg);
         }
@@ -56,12 +59,15 @@ bool MIDISender::sendNoteOff(int channel, int noteNumber) {
     
     MidiMessage msg(juce::MidiMessage::noteOff(channel, noteNumber));
     
-    for(int device = 0; device < MidiOutput::getDevices().size(); device++) {
+    StringArray midiDeviceNames = MidiOutput::getDevices();
+    
+    for(int midiDevice = 0; midiDevice < midiDeviceNames.size(); midiDevice++) 
+    {
         
-        if(_pDeviceManager->isNoteEnabled(device, false))
+        if(_pDeviceManager->isNoteEnabled(midiDeviceNames[midiDevice], false))
         {
             
-            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(device)); 
+            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(midiDevice)); 
     
             MIDI_OUT->sendMessageNow(msg);
         }
@@ -75,15 +81,18 @@ bool MIDISender::sendCC(int channel, int ccNumber, int velocity) {
     
     MidiMessage msg(juce::MidiMessage::controllerEvent (channel, ccNumber, velocity));
     
-    for(int device = 0; device < MidiOutput::getDevices().size(); device++) {
+    StringArray midiDeviceNames = MidiOutput::getDevices();
+    
+    for(int midiDevice = 0; midiDevice < midiDeviceNames.size(); midiDevice++) 
+    {
         
-        if(_pDeviceManager->isCcEnabled(device, false))
+        if(_pDeviceManager->isCcEnabled(midiDeviceNames[midiDevice], false))
         {
-            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(device)); 
+            ScopedPointer<MidiOutput> MIDI_OUT(MidiOutput::openDevice(midiDevice)); 
             
             MIDI_OUT->sendMessageNow(msg);
         }
     }
-    
+
     return true;
 }

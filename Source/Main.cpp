@@ -36,6 +36,7 @@ public:
         PropertiesFile::Options options;
         options.applicationName     = "Nomestate";
         options.filenameSuffix      = "settings";
+        options.folderName          = "Nomestate";
         options.osxLibrarySubFolder = "Application Support";
         
         appProperties = new ApplicationProperties();

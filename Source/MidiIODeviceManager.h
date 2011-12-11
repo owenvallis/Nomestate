@@ -21,22 +21,32 @@ public:
 	MidiIODeviceManager();
 	~MidiIODeviceManager();
 		
-	void setMidiNoteEnabled(const String& midiDeviceName, int devicePos, bool input, bool enabled);
-	void setMidiCCEnabled(const String& midiDeviceName, int devicePos, bool input, bool enabled);
+	void setMidiNoteEnabled(const String& midiDeviceName, bool input, bool enabled);
+	void setMidiCCEnabled(const String& midiDeviceName, bool input, bool enabled);
 	
 	// int devicePos_:  which midi Device
 	// bool input:		whether this is an input (true) of output (false) device
-	bool isNoteEnabled(int devicePos_, bool input);
-	bool isCcEnabled(int devicePos_, bool input);
-	bool isMidiOutputEnabled(int devicePos_);
+	bool isNoteEnabled(String midiDeviceName, bool input);
+	bool isCcEnabled(String midiDeviceName, bool input);
+	bool isMidiOutputEnabled(String midiDeviceName);
+    
+    //==========================================================================
+    ValueTree         _midiInputEnabled;
+    ValueTree         _midiOutputEnabled;
 
 	//==========================================================================
 	juce_UseDebuggingNewOperator
 	
 private:
-	//==========================================================================
-	Array<bool>					inputNote, inputCc;
-	Array<bool>					outputNote, outputCc, outputEnabled;
+    //==========================================================================
+    // midi input
+    const Identifier  noteInputEnabled;
+    const Identifier  ccInputEnabled;
+    
+    // midi output
+    const Identifier  noteOutputEnabled;
+    const Identifier  ccOutputEnabled;
+    const Identifier  outputEnabled;
 	
 	//==========================================================================
 	// (prevent copy constructor and operator= being generated..)

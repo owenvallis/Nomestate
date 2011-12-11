@@ -16,10 +16,23 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
                                             colourEditor("colourEditor","Colour","Colour")
                                             
 {
+    connectedDevices.addListener(this);
+    
     connectedDevices.setProperty(Identifier("currentdevice"), "No Device Connected", NULL);
-    connectedDevices.setProperty(Identifier("currentHostPort"), 8080, NULL);
-    connectedDevices.setProperty(Identifier("currentListenPort"), 8000, NULL);
-    connectedDevices.setProperty(Identifier("rotation"), "right", NULL);
+
+    if (!appProperties->getUserSettings()->getFile().existsAsFile()) 
+    {
+        DBG("no setttings file, so we are initializing the settings");
+        
+        connectedDevices.setProperty(Identifier("currentHostPort"), 8080, NULL);
+        connectedDevices.setProperty(Identifier("currentListenPort"), 8000, NULL);
+        connectedDevices.setProperty(Identifier("rotation"), "right", NULL);
+        
+    } else {
+        connectedDevices.setProperty(Identifier("currentHostPort"), appProperties->getUserSettings()->getValue("currentHostPort") , NULL);
+        connectedDevices.setProperty(Identifier("currentListenPort"), appProperties->getUserSettings()->getValue("currentListenPort") , NULL);
+        connectedDevices.setProperty(Identifier("rotation"), appProperties->getUserSettings()->getValue("rotation") , NULL);
+    }
     
     mainPropertyGroup = new PropertyGroup("mainGroup","ButtonProperties");
     mainPropertyGroup->addProperty(buttonMode);
@@ -63,4 +76,34 @@ void PropertiesManager::deregisterButton(NomeButton* button)
 void PropertiesManager::deregisterAllButtons()
 {
     buttonPropertyBroadcaster.clear();
+}
+
+void PropertiesManager::valueTreePropertyChanged (ValueTree& treeWhosePropertyHasChanged, const Identifier& property) 
+{
+    if(treeWhosePropertyHasChanged == connectedDevices && property != "currentdevice") 
+    {
+        appProperties->getUserSettings()->setValue(property.toString(), connectedDevices.getPropertyAsValue(property, NULL));
+    
+        appProperties->saveIfNeeded();
+    }
+}
+
+void PropertiesManager::valueTreeChildAdded (ValueTree& parentTree, ValueTree& childWhichHasBeenAdded)
+{
+    
+}
+
+void PropertiesManager::valueTreeChildRemoved (ValueTree& parentTree, ValueTree& childWhichHasBeenRemoved)
+{
+    
+}
+
+void PropertiesManager::valueTreeChildOrderChanged (ValueTree& parentTreeWhoseChildrenHaveMoved)
+{
+    
+}
+
+void PropertiesManager::valueTreeParentChanged     (ValueTree& treeWhoseParentHasChanged)
+{
+    
 }

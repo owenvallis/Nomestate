@@ -36,7 +36,7 @@ private:
 	//==========================================================================
 	ScopedPointer<Label>                            midiPorts, note, cc;
 	
-	OwnedArray<MidiMsgTypeIOComponent>  midiInputs, midiOutputs;
+	OwnedArray<MidiMsgTypeIOComponent>              midiInputs, midiOutputs;
 	OwnedArray<Label>                               midiInputLabel, midiOutputLabel;
 	StringArray                                     midiInputsList, midiOutputsList;
 	

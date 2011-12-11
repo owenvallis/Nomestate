@@ -22,7 +22,7 @@ public:
     //==============================================================================
     MidiMsgTypeIOComponent (MidiIODeviceManager& deviceManager_, 
                                             const String& midiDeviceName_, 
-                                            int deviceNum_, bool input_);
+                                            bool input_);
     ~MidiMsgTypeIOComponent();
 	
     //==============================================================================
@@ -37,7 +37,7 @@ public:
 private:
 	MidiIODeviceManager&			deviceManager;
 	const String&					midiDeviceName;
-	int								deviceNum;
+    
 	// is this a midi input or output device manager
 	bool							input;
 	
