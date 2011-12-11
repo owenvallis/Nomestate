@@ -17,7 +17,7 @@ MainAppWindow::MainAppWindow()
                   Colours::black,
                   DocumentWindow::allButtons)
 {
-    
+    commandManager = new ApplicationCommandManager();
     mainComponent = new MainComponent();
    
 	setContentOwned (mainComponent, false);
@@ -31,7 +31,8 @@ MainAppWindow::MainAppWindow()
    
     setResizable (true, false);
 	centreWithSize (650, 425);
-
+    
+    commandManager->registerAllCommandsForTarget(mainComponent);
     setVisible (true);
 
 

@@ -106,6 +106,7 @@ void MainComponent::menuItemSelected(int menuItemID, int topLevelMenuIndex){
     }
 }
 
+
 void MainComponent::openPreferences() {
 
     PreferencesComponent preferencesWindow(_sCore, _deviceManager);

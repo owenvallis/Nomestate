@@ -25,6 +25,7 @@
 
 class MainComponent  :	public Component,
                         public MenuBarModel,
+                        public ApplicationCommandTarget,
                         public ChangeListener,
                         public ButtonListener,
                         public LassoSource<NomeButton*>
@@ -55,9 +56,16 @@ public:
 	const PopupMenu getMenuForIndex	(int topLevelMenuIndex, const String &menuName);
 	void menuItemSelected	(int menuItemID, int topLevelMenuIndex);	
     
+    ApplicationCommandTarget* getNextCommandTarget(){};
+    void getAllCommands     (Array<CommandID> &commands){};
+    void getCommandInfo     (CommandID commndID, ApplicationCommandInfo &result){};
+    bool perform            (const InvocationInfo &info){return false;};
+    
     void setSerialOscPrefix();
 	
 private:
+    
+    ApplicationCommandManager* commandManager;
     
     ZeroConfReceiver _ZeroConfReceiver;
     ZeroConfResolve  _ZeroConfResolve;
