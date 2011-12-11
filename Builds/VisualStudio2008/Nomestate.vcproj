@@ -158,11 +158,24 @@
       </Filter>
       <Filter Name="Source">
         <File RelativePath="..\..\Source\Main.cpp"/>
+        <Filter Name="Model">
+          <Filter Name="MIDI IO">
+            <File RelativePath="..\..\Source\MidiIODeviceManager.cpp"/>
+            <File RelativePath="..\..\Source\MidiIODeviceManager.h"/>
+          </Filter>
+          <File RelativePath="..\..\Source\PropertiesManager.cpp"/>
+          <File RelativePath="..\..\Source\PropertiesManager.h"/>
+          <Filter Name="PropertyGroup">
+            <File RelativePath="..\..\Source\PropertyGroup.cpp"/>
+            <File RelativePath="..\..\Source\PropertyGroup.h"/>
+          </Filter>
+          <File RelativePath="..\..\Source\ButtonPropertyContainer.h"/>
+        </Filter>
         <Filter Name="Nomestate View">
           <File RelativePath="..\..\Source\DeviceTabComponent.cpp"/>
           <File RelativePath="..\..\Source\DeviceTabComponent.h"/>
-          <File RelativePath="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp"/>
-          <File RelativePath="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h"/>
+          <File RelativePath="..\..\Source\MIDIMsgTypeIOComponent.cpp"/>
+          <File RelativePath="..\..\Source\MIDIMsgTypeIOComponent.h"/>
           <File RelativePath="..\..\Source\MidiIOManagerComponent.cpp"/>
           <File RelativePath="..\..\Source\MidiIOManagerComponent.h"/>
           <File RelativePath="..\..\Source\PreferencesComponent.cpp"/>
@@ -177,12 +190,6 @@
           <File RelativePath="..\..\Source\MainComponent.h"/>
           <File RelativePath="..\..\Source\ColourSelectorPropertyComponent.cpp"/>
           <File RelativePath="..\..\Source\ColourSelectorPropertyComponent.h"/>
-        </Filter>
-        <Filter Name="ZeroConf Core">
-          <File RelativePath="..\..\Source\ZeroConfResolve.cpp"/>
-          <File RelativePath="..\..\Source\ZeroConfResolve.h"/>
-          <File RelativePath="..\..\Source\ZeroConfReceiver.cpp"/>
-          <File RelativePath="..\..\Source\ZeroConfReceiver.h"/>
         </Filter>
         <Filter Name="Signal Core">
           <File RelativePath="..\..\Source\SignalCore.cpp"/>
@@ -222,34 +229,29 @@
             <File RelativePath="..\..\Source\Signal.h"/>
           </Filter>
         </Filter>
-        <Filter Name="Signal Utils">
-          <File RelativePath="..\..\Source\Message.cpp"/>
-          <File RelativePath="..\..\Source\Message.h"/>
-          <File RelativePath="..\..\Source\MessageArg.h"/>
-          <Filter Name="OSC">
-            <File RelativePath="..\..\Source\OSCArg.h"/>
-            <File RelativePath="..\..\Source\OSCBroadcaster.cpp"/>
-            <File RelativePath="..\..\Source\OSCBroadcaster.h"/>
-            <File RelativePath="..\..\Source\OSCBundle.cpp"/>
-            <File RelativePath="..\..\Source\OSCBundle.h"/>
-            <File RelativePath="..\..\Source\OSCListener.cpp"/>
-            <File RelativePath="..\..\Source\OSCListener.h"/>
-            <File RelativePath="..\..\Source\OSCMessage.cpp"/>
-            <File RelativePath="..\..\Source\OSCMessage.h"/>
+        <Filter Name="Utility">
+          <Filter Name="Signal Utils">
+            <File RelativePath="..\..\Source\Message.cpp"/>
+            <File RelativePath="..\..\Source\Message.h"/>
+            <File RelativePath="..\..\Source\MessageArg.h"/>
+            <Filter Name="OSC">
+              <File RelativePath="..\..\Source\OSCArg.h"/>
+              <File RelativePath="..\..\Source\OSCBroadcaster.cpp"/>
+              <File RelativePath="..\..\Source\OSCBroadcaster.h"/>
+              <File RelativePath="..\..\Source\OSCBundle.cpp"/>
+              <File RelativePath="..\..\Source\OSCBundle.h"/>
+              <File RelativePath="..\..\Source\OSCListener.cpp"/>
+              <File RelativePath="..\..\Source\OSCListener.h"/>
+              <File RelativePath="..\..\Source\OSCMessage.cpp"/>
+              <File RelativePath="..\..\Source\OSCMessage.h"/>
+            </Filter>
           </Filter>
         </Filter>
-        <Filter Name="MIDI IO Utils">
-          <File RelativePath="..\..\Source\MidiIODeviceManager.cpp"/>
-          <File RelativePath="..\..\Source\MidiIODeviceManager.h"/>
-        </Filter>
-        <Filter Name="Button Properties">
-          <File RelativePath="..\..\Source\ButtonPropertyContainer.h"/>
-          <File RelativePath="..\..\Source\PropertiesManager.cpp"/>
-          <File RelativePath="..\..\Source\PropertiesManager.h"/>
-          <Filter Name="PropertyGroup">
-            <File RelativePath="..\..\Source\PropertyGroup.cpp"/>
-            <File RelativePath="..\..\Source\PropertyGroup.h"/>
-          </Filter>
+        <Filter Name="ZeroConf Core">
+          <File RelativePath="..\..\Source\ZeroConfResolve.cpp"/>
+          <File RelativePath="..\..\Source\ZeroConfResolve.h"/>
+          <File RelativePath="..\..\Source\ZeroConfReceiver.cpp"/>
+          <File RelativePath="..\..\Source\ZeroConfReceiver.h"/>
         </Filter>
       </Filter>
     </Filter>

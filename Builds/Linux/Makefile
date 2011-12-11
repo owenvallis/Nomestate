@@ -51,8 +51,11 @@ OBJECTS := \
   $(OBJDIR)/OscReceivedElements_990f2ae6.o \
   $(OBJDIR)/OscTypes_5116aa15.o \
   $(OBJDIR)/Main_90ebc5c2.o \
+  $(OBJDIR)/MidiIODeviceManager_3cab7e11.o \
+  $(OBJDIR)/PropertiesManager_f871875b.o \
+  $(OBJDIR)/PropertyGroup_716a000b.o \
   $(OBJDIR)/DeviceTabComponent_b12cf8e7.o \
-  $(OBJDIR)/AbletonStyleMidiMsgTypeIOComponent_657aeade.o \
+  $(OBJDIR)/MIDIMsgTypeIOComponent_451c4b26.o \
   $(OBJDIR)/MidiIOManagerComponent_e965e200.o \
   $(OBJDIR)/PreferencesComponent_df4d6ee.o \
   $(OBJDIR)/NomeButton_bfba13b4.o \
@@ -60,8 +63,6 @@ OBJECTS := \
   $(OBJDIR)/MainWindow_499ac812.o \
   $(OBJDIR)/MainComponent_a6ffb4a5.o \
   $(OBJDIR)/ColourSelectorPropertyComponent_945bf9fe.o \
-  $(OBJDIR)/ZeroConfResolve_a5bbfec1.o \
-  $(OBJDIR)/ZeroConfReceiver_ce82e104.o \
   $(OBJDIR)/SignalCore_18610870.o \
   $(OBJDIR)/SignalModifier_9cd9d1a8.o \
   $(OBJDIR)/MIDIReceiver_18ed0c99.o \
@@ -76,9 +77,8 @@ OBJECTS := \
   $(OBJDIR)/OSCBundle_341fc942.o \
   $(OBJDIR)/OSCListener_6ac05db4.o \
   $(OBJDIR)/OSCMessage_2d11b191.o \
-  $(OBJDIR)/MidiIODeviceManager_3cab7e11.o \
-  $(OBJDIR)/PropertiesManager_f871875b.o \
-  $(OBJDIR)/PropertyGroup_716a000b.o \
+  $(OBJDIR)/ZeroConfResolve_a5bbfec1.o \
+  $(OBJDIR)/ZeroConfReceiver_ce82e104.o \
   $(OBJDIR)/juce_audio_basics_2442e4ea.o \
   $(OBJDIR)/juce_audio_devices_a4c8a728.o \
   $(OBJDIR)/juce_audio_formats_d349f0c8.o \
@@ -144,14 +144,29 @@ $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	@echo "Compiling Main.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
+$(OBJDIR)/MidiIODeviceManager_3cab7e11.o: ../../Source/MidiIODeviceManager.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling MidiIODeviceManager.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PropertiesManager_f871875b.o: ../../Source/PropertiesManager.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PropertiesManager.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PropertyGroup_716a000b.o: ../../Source/PropertyGroup.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PropertyGroup.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
 $(OBJDIR)/DeviceTabComponent_b12cf8e7.o: ../../Source/DeviceTabComponent.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling DeviceTabComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/AbletonStyleMidiMsgTypeIOComponent_657aeade.o: ../../Source/AbletonStyleMidiMsgTypeIOComponent.cpp
+$(OBJDIR)/MIDIMsgTypeIOComponent_451c4b26.o: ../../Source/MIDIMsgTypeIOComponent.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling AbletonStyleMidiMsgTypeIOComponent.cpp"
+	@echo "Compiling MIDIMsgTypeIOComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/MidiIOManagerComponent_e965e200.o: ../../Source/MidiIOManagerComponent.cpp
@@ -187,16 +202,6 @@ $(OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp
 $(OBJDIR)/ColourSelectorPropertyComponent_945bf9fe.o: ../../Source/ColourSelectorPropertyComponent.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling ColourSelectorPropertyComponent.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/ZeroConfResolve_a5bbfec1.o: ../../Source/ZeroConfResolve.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling ZeroConfResolve.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/ZeroConfReceiver_ce82e104.o: ../../Source/ZeroConfReceiver.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling ZeroConfReceiver.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/SignalCore_18610870.o: ../../Source/SignalCore.cpp
@@ -269,19 +274,14 @@ $(OBJDIR)/OSCMessage_2d11b191.o: ../../Source/OSCMessage.cpp
 	@echo "Compiling OSCMessage.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/MidiIODeviceManager_3cab7e11.o: ../../Source/MidiIODeviceManager.cpp
+$(OBJDIR)/ZeroConfResolve_a5bbfec1.o: ../../Source/ZeroConfResolve.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling MidiIODeviceManager.cpp"
+	@echo "Compiling ZeroConfResolve.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/PropertiesManager_f871875b.o: ../../Source/PropertiesManager.cpp
+$(OBJDIR)/ZeroConfReceiver_ce82e104.o: ../../Source/ZeroConfReceiver.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling PropertiesManager.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/PropertyGroup_716a000b.o: ../../Source/PropertyGroup.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling PropertyGroup.cpp"
+	@echo "Compiling ZeroConfReceiver.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/juce_audio_basics_2442e4ea.o: ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.cpp

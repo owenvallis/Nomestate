@@ -10,18 +10,18 @@
 
 #include "DeviceTabComponent.h"
 
-DeviceTabComponent::DeviceTabComponent() :  setRotationLabel(String::empty, "Rotation:"),
-                                            setConnectedDevice(String::empty, "Set Connected Device:"),
-                                            setListenPort("8000"),
+DeviceTabComponent::DeviceTabComponent() :  setConnectedDevice(String::empty, "Set Connected Device:"),
+                                            setRotationLabel(String::empty, "Rotation:"),                                            
+                                            setListenPort(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue(Identifier("currentListenPort"), NULL), " ", 5, false),
                                             setListenPortLabel(String::empty, "Listen Port:"),
-                                            setHostPort("8080"),
+                                            setHostPort(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue(Identifier("currentHostPort"), NULL), " ", 5, false),
                                             setHostPortLabel(String::empty, "Host Port:")
                                             
                                                         
 {   
     
     addAndMakeVisible(&setListenPort);
-    setListenPort.addListener(this);
+    
     
     addAndMakeVisible(&setListenPortLabel);
     setListenPortLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
@@ -31,7 +31,6 @@ DeviceTabComponent::DeviceTabComponent() :  setRotationLabel(String::empty, "Rot
     setListenPortLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
     
     addAndMakeVisible(&setHostPort);
-    setHostPort.addListener(this);
     
     addAndMakeVisible(&setHostPortLabel);
     setHostPortLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
@@ -118,7 +117,7 @@ void DeviceTabComponent::resized()
     setListenPortLabel.setBounds(proportionOfWidth (0.0500f),
                                 y + (dh*3),
                                 width + 10, h);
-    setListenPort.setBounds(proportionOfWidth(0.5600f) - 38, y + (dh*3), 164, 18.0f);
+    setListenPort.setBounds(proportionOfWidth (0.2610f), y + (dh*3), 250, 20.0f);
     
     
     f = new Font(setHostPortLabel.getFont ());
@@ -126,7 +125,7 @@ void DeviceTabComponent::resized()
     setHostPortLabel.setBounds(proportionOfWidth (0.0500f),
                                  y + (dh*4),
                                  width + 10, h);
-    setHostPort.setBounds(proportionOfWidth(0.5600f) - 38, y + (dh*4), 164, 18.0f);
+    setHostPort.setBounds(proportionOfWidth (0.2610f), y + (dh*4), 250, 20.0f);
 }
 
 void DeviceTabComponent::setupRotationList()
@@ -138,10 +137,4 @@ void DeviceTabComponent::setupRotationList()
     for (int i = 0; i<rotationNames.size(); i++) {
         rotationNamesVars.add(var(i*90));
     }
-}
-
-void DeviceTabComponent::textEditorReturnKeyPressed (TextEditor &editor)
-{
-    //send OSC to set /sys/prefix
-    DBG("prefix changed...");
 }

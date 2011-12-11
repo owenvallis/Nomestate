@@ -12,6 +12,7 @@
 #include "MainWindow.h"
 #include "CustomLookAndFeel.h"
 
+ApplicationProperties* appProperties = nullptr;
 
 //==============================================================================
 class ChronomeStateApplication  : public JUCEApplication
@@ -30,6 +31,17 @@ public:
     void initialise (const String& commandLine)
     {
         
+        // initialise our settings file..
+        
+        PropertiesFile::Options options;
+        options.applicationName     = "Nomestate";
+        options.filenameSuffix      = "settings";
+        options.folderName          = "Nomestate";
+        options.osxLibrarySubFolder = "Application Support";
+        
+        appProperties = new ApplicationProperties();
+        appProperties->setStorageParameters (options);
+        
         LookAndFeel::setDefaultLookAndFeel (&customLookAndFeel);
         // Do your application's initialisation code here..
         mainWindow = new MainAppWindow();
@@ -39,6 +51,9 @@ public:
     {
         // Do your application's shutdown code here..
         mainWindow = 0;
+        appProperties->closeFiles();
+        
+        deleteAndZero (appProperties);
     }
 
     //==============================================================================

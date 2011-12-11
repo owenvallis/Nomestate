@@ -10,147 +10,186 @@
 
 #include "MidiIODeviceManager.h"
 
+
 MidiIODeviceManager::MidiIODeviceManager()
-{
+{   
+    
 	StringArray midiInputList = MidiInput::getDevices();
 	for(int i = 0; i < midiInputList.size(); i++)
 	{
-		inputNote.add(false);
-		inputCc.add(false);
+        if(!appProperties->getUserSettings()->containsKey(midiInputList[i] + "noteInputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiInputList[i] + "noteInputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteInputEnabled"))
+        {
+            setMidiInputEnabled(midiInputList[i], true);
+        }
+        
+        if (!appProperties->getUserSettings()->containsKey(midiInputList[i] + "ccInputEnabled")) {
+            appProperties->getUserSettings()->setValue(midiInputList[i] + "ccInputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccInputEnabled"))
+        {
+            setMidiInputEnabled(midiInputList[i], true);
+        }
 	}
 	
 	StringArray midiOutputList = MidiOutput::getDevices();
 	for(int i = 0; i < midiOutputList.size(); i++)
 	{
-		outputNote.add(false);
-		outputCc.add(false);
-		outputEnabled.add(false);
+        if(!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "noteOutputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "noteOutputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteOutputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+        }
+        
+        if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "ccOutputEnabled")) {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "ccOutputEnabled", false);
+        }
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccOutputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+        }
+        
+        if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "outputEnabled")) {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", false);
+        }
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "outputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+        }
 	}	
+    
+    appProperties->saveIfNeeded();
 }
 
 MidiIODeviceManager::~MidiIODeviceManager()
 {
 }
 
-void MidiIODeviceManager::setMidiNoteEnabled (const String& midiDeviceName, int devicePos, bool input, bool enabled)
-{
+void MidiIODeviceManager::setMidiNoteEnabled (const String& midiDeviceName, bool input, bool enabled)
+{    
 	if(input)
 	{	
-		if(devicePos < inputNote.size() )
-		{
-			inputNote.set(devicePos, enabled);
-			if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-			else if(enabled == false && isMidiInputEnabled(midiDeviceName) == true && 
-					inputNote[devicePos] == false && inputCc[devicePos] == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-		}
-		else
-		{
-			DBG("device outside the range of inputNote");
-		}
+        appProperties->getUserSettings()->setValue(midiDeviceName + "noteInputEnabled", enabled);		
+        
+        // lets see if we need to turn the inputs on or off 
+        if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
+        {
+            // we want to start listening to midi from this input
+            setMidiInputEnabled(midiDeviceName, true);
+        }
+        else if(enabled == false 
+                && isMidiInputEnabled(midiDeviceName) == true 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteInputEnabled") == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccInputEnabled") == false)
+        {
+            // no one is listening to this midi device, so lets turn it off
+            setMidiInputEnabled(midiDeviceName, false);
+        }
+        
 	}
-	else
+	else if(!input)
 	{
-		
-		if(devicePos < outputNote.size() )
-		{
-			outputNote.set(devicePos, enabled);
-			if(enabled == true && outputEnabled[devicePos] == false)
-			{
-				outputEnabled.set(devicePos,enabled);
-			}
-			else if(enabled == false && outputEnabled[devicePos] == true && 
-					outputNote[devicePos] == false && outputCc[devicePos] == false)
-			{
-				outputEnabled.set(devicePos, enabled);
-			}
-			
-			sendChangeMessage ();
-		}
-		else
-		{
-			DBG("device outside the range of outputNote");
-		}		
+		appProperties->getUserSettings()->setValue(midiDeviceName + "noteOutputEnabled", var(enabled));
+        
+        // lets see if we need to turn the outputs on or off 
+        if(enabled == true 
+           && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteOutputEnabled")  == false)
+        {
+            // we want to start sending midi to this output
+            appProperties->getUserSettings()->setValue(midiDeviceName + "outputEnabled", var(true));
+        }
+        else if(enabled == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "outputEnabled")  == true 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteOutputEnabled") == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccOutputEnabled") == false)
+        {
+            // no one wants to send to this midi device, so lets turn it off
+            appProperties->getUserSettings()->setValue(midiDeviceName + "outputEnabled", var(false));
+        }
+        
+        sendChangeMessage ();
+        
+        appProperties->saveIfNeeded();
 	}
 }
 
-void MidiIODeviceManager::setMidiCCEnabled (const String& midiDeviceName, int devicePos, bool input, bool enabled)
+void MidiIODeviceManager::setMidiCCEnabled (const String& midiDeviceName, bool input, bool enabled)
 {
 	if(input)
 	{	
-		if(devicePos < inputCc.size() )
-		{
-			inputCc.set(devicePos, enabled);
-			if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-			else if(enabled == false && isMidiInputEnabled(midiDeviceName) == true && 
-					inputNote[devicePos] == false && inputCc[devicePos] == false)
-			{
-				setMidiInputEnabled(midiDeviceName, enabled);
-			}
-		}
-		else
-		{
-			DBG("device outside the range of inputNote");
-		}
+        appProperties->getUserSettings()->setValue(midiDeviceName + "ccInputEnabled", enabled);		
+        
+        // lets see if we need to turn the inputs on or off 
+        if(enabled == true && isMidiInputEnabled(midiDeviceName) == false)
+        {
+            // we want to start listening to midi from this input
+            setMidiInputEnabled(midiDeviceName, true);
+        }
+        else if(enabled == false 
+                && isMidiInputEnabled(midiDeviceName) == true 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteInputEnabled") == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccInputEnabled") == false)
+        {
+            // no one is listening to this midi device, so lets turn it off
+            setMidiInputEnabled(midiDeviceName, false);
+        }
 	}
-	else
+	else if(!input)
 	{
 		
-		if(devicePos < outputCc.size() )
-		{
-			outputCc.set(devicePos, enabled);
-			if(enabled == true && outputEnabled[devicePos] == false)
-			{
-				outputEnabled.set(devicePos,enabled);
-			}
-			else if(enabled == false && outputEnabled[devicePos] == true && 
-					outputNote[devicePos] == false && outputCc[devicePos] == false)
-			{
-				outputEnabled.set(devicePos, enabled);
-			}
-			
-			sendChangeMessage ();
-		}
-		else
-		{
-			DBG("device outside the range of outputNote");
-		}		
+        appProperties->getUserSettings()->setValue(midiDeviceName + "ccOutputEnabled", enabled);	
+        
+        // lets see if we need to turn the outputs on or off 
+        if(enabled == true 
+           && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteOutputEnabled")  == false)
+        {
+            // we want to start sending midi to this output
+            appProperties->getUserSettings()->setValue(midiDeviceName + "outputEnabled", true);
+        }
+        else if(enabled == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "outputEnabled")  == true 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteOutputEnabled") == false 
+                && appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccOutputEnabled") == false)
+        {
+            // no one wants to send to this midi device, so lets turn it off
+            appProperties->getUserSettings()->setValue(midiDeviceName + "outputEnabled", true);
+        }
+        
+        sendChangeMessage ();
 	}
+    
+    appProperties->saveIfNeeded();
 }
 
-bool MidiIODeviceManager::isNoteEnabled (int devicePos_, bool input)
+bool MidiIODeviceManager::isNoteEnabled (String midiDeviceName, bool input)
 {
 	if(input)
-		return inputNote[devicePos_];
+		return appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteInputEnabled");
 	
 	else if(!input)
-		return outputNote[devicePos_];
+		return appProperties->getUserSettings()->getBoolValue(midiDeviceName + "noteOutputEnabled");
 	
 	return false;
 }
 
-bool MidiIODeviceManager::isCcEnabled (int devicePos_, bool input)
+bool MidiIODeviceManager::isCcEnabled (String midiDeviceName, bool input)
 {
 	if(input)
-		return inputCc[devicePos_];
+		return appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccInputEnabled");
 	
 	else if(!input)
-		return outputCc[devicePos_];
+		return appProperties->getUserSettings()->getBoolValue(midiDeviceName + "ccOutputEnabled");
 	
 	return false;
 }
 
-bool MidiIODeviceManager::isMidiOutputEnabled (int devicePos_)
+bool MidiIODeviceManager::isMidiOutputEnabled (String midiDeviceName)
 {	
-	return outputEnabled[devicePos_];
+	return appProperties->getUserSettings()->getBoolValue(midiDeviceName + "OutputEnabled");
 }
-
-//************************ Saving state 

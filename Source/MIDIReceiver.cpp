@@ -16,8 +16,6 @@ MIDIReceiver::MIDIReceiver(MessageCenter& center, MidiIODeviceManager &MidiDevic
     _MidiDeviceManager = &MidiDeviceManager;
     
     _MidiDeviceManager->addMidiInputCallback(String::empty, this);
-    
-    DBG("made the MIDI RCV");
 }
 
 MIDIReceiver::~MIDIReceiver()
@@ -26,20 +24,14 @@ MIDIReceiver::~MIDIReceiver()
 }
 
 void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessage &message)
-{	        
+{	      
+    DBG("midi in");
     // is this midi input source enabled
     if(_MidiDeviceManager->isMidiInputEnabled(source->getName()))
     {
-        // what position number is the device that we are listening to?
-        StringArray midiInputList = MidiInput::getDevices();
-        int devicePos;
-        
-        for (int i = 0; i < midiInputList.size(); i++) {
-            if(source->getName() == midiInputList[i])
-                devicePos = i;
-        }   
-        
-        if(message.isController() && _MidiDeviceManager->isCcEnabled(devicePos, true))
+        DBG(source->getName());
+
+        if(message.isController() && _MidiDeviceManager->isCcEnabled(source->getName(), true))
         {            
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
@@ -60,7 +52,7 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             
             _mCenter->handleSignal(*ledStateSignal); 
         } 
-        else if (message.isNoteOn() && _MidiDeviceManager->isNoteEnabled(devicePos, true))
+        else if (message.isNoteOn() && _MidiDeviceManager->isNoteEnabled(source->getName(), true))
         {            
             // lets set the color based off MIDI note Velocity
             int MIDIVelocity = message.getVelocity();
@@ -137,7 +129,7 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             
             
         }
-        else if (message.isNoteOff() && _MidiDeviceManager->isNoteEnabled(devicePos, true))
+        else if (message.isNoteOff() && _MidiDeviceManager->isNoteEnabled(source->getName(), true))
         {             
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");

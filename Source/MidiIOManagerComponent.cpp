@@ -19,13 +19,13 @@ MidiIOManagerComponent::MidiIOManagerComponent (MidiIODeviceManager& deviceManag
 	
 	for(int i = 0; i < midiInputsList.size(); i++)
 	{
-		midiInputs.add(new AbletonStyleMidiMsgTypeIOComponent(deviceManager, midiInputsList[i], i, true) );
+		midiInputs.add(new MidiMsgTypeIOComponent(deviceManager, midiInputsList[i], true) );
 		addAndMakeVisible(midiInputs[i]);
 	}
 	
 	for(int i = 0; i < midiOutputsList.size(); i++)
 	{
-		midiOutputs.add(new AbletonStyleMidiMsgTypeIOComponent(deviceManager, midiOutputsList[i], i, false) );
+		midiOutputs.add(new MidiMsgTypeIOComponent(deviceManager, midiOutputsList[i], false) );
 		addAndMakeVisible(midiOutputs[i]);
 	}
 	

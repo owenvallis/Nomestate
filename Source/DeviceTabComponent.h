@@ -15,8 +15,7 @@
 #include "PropertiesManager.h"
 #include "SignalCore.h"
 
-class DeviceTabComponent  :   public Component,
-                              public TextEditor::Listener
+class DeviceTabComponent  :   public Component
 {
 public:
     //==============================================================================
@@ -42,9 +41,9 @@ private:
     ScopedPointer<ChoicePropertyComponent>  rotation;
     Label                                   setRotationLabel;
     
-    TextEditor                              setListenPort;    
+    TextPropertyComponent                   setListenPort;    
     Label                                   setListenPortLabel;
-    TextEditor                              setHostPort;    
+    TextPropertyComponent                   setHostPort;    
     Label                                   setHostPortLabel;
     
     StringArray                             deviceNames;

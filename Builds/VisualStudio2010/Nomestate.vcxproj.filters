@@ -20,11 +20,17 @@
     <Filter Include="Nomestate\Source">
       <UniqueIdentifier>{47B76CE6-0B61-84EA-9CD5-358DBE1A6195}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Nomestate\Source\Model">
+      <UniqueIdentifier>{42238150-5D38-5A5B-BFFC-8057DD24A379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Nomestate\Source\Model\MIDI IO">
+      <UniqueIdentifier>{6B631DBE-C2B6-BE1C-D79B-CC421BA1E7B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Nomestate\Source\Model\PropertyGroup">
+      <UniqueIdentifier>{4C40DFF1-6D54-C066-48BD-E4A589F8AC05}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Nomestate\Source\Nomestate View">
       <UniqueIdentifier>{DECEE878-F626-BAA1-018E-19E687AD0105}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Nomestate\Source\ZeroConf Core">
-      <UniqueIdentifier>{0CC1A3F2-FDFA-0491-30DD-E0A14A52CBF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Nomestate\Source\Signal Core">
       <UniqueIdentifier>{41DC6BDB-0DB6-43CB-F1AE-DEB63BF33936}</UniqueIdentifier>
@@ -50,20 +56,17 @@
     <Filter Include="Nomestate\Source\Signal Core\Signal">
       <UniqueIdentifier>{C7054B77-DF54-5C83-31B8-3D9BE09FF002}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Nomestate\Source\Signal Utils">
-      <UniqueIdentifier>{B9FAD155-007E-239C-C882-FA54AA46639C}</UniqueIdentifier>
+    <Filter Include="Nomestate\Source\Utility">
+      <UniqueIdentifier>{3C0E2611-0ADF-B1F1-A048-AB417B9D9267}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Nomestate\Source\Signal Utils\OSC">
-      <UniqueIdentifier>{23C56942-B797-2749-7271-0D4C3965E035}</UniqueIdentifier>
+    <Filter Include="Nomestate\Source\Utility\Signal Utils">
+      <UniqueIdentifier>{B556CCA3-7AB8-79B0-DAF1-5075035FEB7F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Nomestate\Source\MIDI IO Utils">
-      <UniqueIdentifier>{16324EE1-22D5-3587-00F5-A45342636ABB}</UniqueIdentifier>
+    <Filter Include="Nomestate\Source\Utility\Signal Utils\OSC">
+      <UniqueIdentifier>{A2747471-2639-2BF1-2722-F8369065A0BC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Nomestate\Source\Button Properties">
-      <UniqueIdentifier>{94C4F19D-6F9B-3FDF-CD4E-69D4F8ADB173}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Nomestate\Source\Button Properties\PropertyGroup">
-      <UniqueIdentifier>{660ED595-A1FC-5757-396D-7DD137E1077F}</UniqueIdentifier>
+    <Filter Include="Nomestate\Source\ZeroConf Core">
+      <UniqueIdentifier>{0CC1A3F2-FDFA-0491-30DD-E0A14A52CBF1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -334,10 +337,19 @@
     <ClCompile Include="..\..\Source\Main.cpp">
       <Filter>Nomestate\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\MidiIODeviceManager.cpp">
+      <Filter>Nomestate\Source\Model\MIDI IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PropertiesManager.cpp">
+      <Filter>Nomestate\Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PropertyGroup.cpp">
+      <Filter>Nomestate\Source\Model\PropertyGroup</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\DeviceTabComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.cpp">
+    <ClCompile Include="..\..\Source\MIDIMsgTypeIOComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\MidiIOManagerComponent.cpp">
@@ -360,12 +372,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\ColourSelectorPropertyComponent.cpp">
       <Filter>Nomestate\Source\Nomestate View</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\ZeroConfResolve.cpp">
-      <Filter>Nomestate\Source\ZeroConf Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\ZeroConfReceiver.cpp">
-      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SignalCore.cpp">
       <Filter>Nomestate\Source\Signal Core</Filter>
@@ -395,28 +401,25 @@
       <Filter>Nomestate\Source\Signal Core\Signal</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Message.cpp">
-      <Filter>Nomestate\Source\Signal Utils</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\OSCBroadcaster.cpp">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\OSCBundle.cpp">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\OSCListener.cpp">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\OSCMessage.cpp">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\MidiIODeviceManager.cpp">
-      <Filter>Nomestate\Source\MIDI IO Utils</Filter>
+    <ClCompile Include="..\..\Source\ZeroConfResolve.cpp">
+      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\PropertiesManager.cpp">
-      <Filter>Nomestate\Source\Button Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\PropertyGroup.cpp">
-      <Filter>Nomestate\Source\Button Properties\PropertyGroup</Filter>
+    <ClCompile Include="..\..\Source\ZeroConfReceiver.cpp">
+      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -1512,10 +1515,22 @@
     <ClInclude Include="..\..\Libraries\osc\OscTypes.h">
       <Filter>Nomestate\Libraries\osc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\MidiIODeviceManager.h">
+      <Filter>Nomestate\Source\Model\MIDI IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PropertiesManager.h">
+      <Filter>Nomestate\Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PropertyGroup.h">
+      <Filter>Nomestate\Source\Model\PropertyGroup</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ButtonPropertyContainer.h">
+      <Filter>Nomestate\Source\Model</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\DeviceTabComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\AbletonStyleMidiMsgTypeIOComponent.h">
+    <ClInclude Include="..\..\Source\MIDIMsgTypeIOComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MidiIOManagerComponent.h">
@@ -1538,12 +1553,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\ColourSelectorPropertyComponent.h">
       <Filter>Nomestate\Source\Nomestate View</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\ZeroConfResolve.h">
-      <Filter>Nomestate\Source\ZeroConf Core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\ZeroConfReceiver.h">
-      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SignalCore.h">
       <Filter>Nomestate\Source\Signal Core</Filter>
@@ -1585,37 +1594,31 @@
       <Filter>Nomestate\Source\Signal Core\Signal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Message.h">
-      <Filter>Nomestate\Source\Signal Utils</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\MessageArg.h">
-      <Filter>Nomestate\Source\Signal Utils</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCArg.h">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCBroadcaster.h">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCBundle.h">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCListener.h">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OSCMessage.h">
-      <Filter>Nomestate\Source\Signal Utils\OSC</Filter>
+      <Filter>Nomestate\Source\Utility\Signal Utils\OSC</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MidiIODeviceManager.h">
-      <Filter>Nomestate\Source\MIDI IO Utils</Filter>
+    <ClInclude Include="..\..\Source\ZeroConfResolve.h">
+      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ButtonPropertyContainer.h">
-      <Filter>Nomestate\Source\Button Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\PropertiesManager.h">
-      <Filter>Nomestate\Source\Button Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\PropertyGroup.h">
-      <Filter>Nomestate\Source\Button Properties\PropertyGroup</Filter>
+    <ClInclude Include="..\..\Source\ZeroConfReceiver.h">
+      <Filter>Nomestate\Source\ZeroConf Core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>

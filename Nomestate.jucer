@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="nw9dyo" name="Nomestate" projectType="guiapp" version="0.0.1"
+<JUCERPROJECT id="nw9dyo" name="Nomestate" projectType="guiapp" version="0.0.12"
               bundleIdentifier="com.flipmu.Nomestate" jucerVersion="3.0.0">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="xP45SC" juceFolder="../../../sdks/juce/modules"/>
@@ -61,15 +61,34 @@
     </GROUP>
     <GROUP id="{F1CE0A87-E12F-CF1F-D886-55DF9B0FBBBD}" name="Source">
       <FILE id="p3O8i3" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <GROUP id="{01A00411-75A4-31B9-EE41-A6BA732EA193}" name="Nomestate View">
+      <GROUP id="{B6F81B48-7B94-692F-5E3F-117F1A1E71FC}" name="Model">
+        <GROUP id="{04970187-2DD0-0A84-2786-FCC1A197E5D4}" name="MIDI IO">
+          <FILE id="Oc5NUl" name="MidiIODeviceManager.cpp" compile="1" resource="0"
+                file="Source/MidiIODeviceManager.cpp"/>
+          <FILE id="SLuvEs" name="MidiIODeviceManager.h" compile="0" resource="0"
+                file="Source/MidiIODeviceManager.h"/>
+        </GROUP>
+        <FILE id="xXggxH" name="PropertiesManager.cpp" compile="1" resource="0"
+              file="Source/PropertiesManager.cpp"/>
+        <FILE id="CoIeqS" name="PropertiesManager.h" compile="0" resource="0"
+              file="Source/PropertiesManager.h"/>
+        <GROUP id="{86CC2F4A-39BE-814C-EE5C-BF80BE2C6291}" name="PropertyGroup">
+          <FILE id="tz4ozO" name="PropertyGroup.cpp" compile="1" resource="0"
+                file="Source/PropertyGroup.cpp"/>
+          <FILE id="Jn6sS9" name="PropertyGroup.h" compile="0" resource="0" file="Source/PropertyGroup.h"/>
+        </GROUP>
+        <FILE id="sPmafl" name="ButtonPropertyContainer.h" compile="0" resource="0"
+              file="Source/ButtonPropertyContainer.h"/>
+      </GROUP>
+      <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="Nomestate View">
         <FILE id="xD5ysu" name="DeviceTabComponent.cpp" compile="1" resource="0"
               file="Source/DeviceTabComponent.cpp"/>
         <FILE id="JDHva3" name="DeviceTabComponent.h" compile="0" resource="0"
               file="Source/DeviceTabComponent.h"/>
-        <FILE id="QzRNjF" name="AbletonStyleMidiMsgTypeIOComponent.cpp" compile="1"
-              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.cpp"/>
-        <FILE id="CAwbkH" name="AbletonStyleMidiMsgTypeIOComponent.h" compile="0"
-              resource="0" file="Source/AbletonStyleMidiMsgTypeIOComponent.h"/>
+        <FILE id="QzRNjF" name="MIDIMsgTypeIOComponent.cpp" compile="1" resource="0"
+              file="Source/MIDIMsgTypeIOComponent.cpp"/>
+        <FILE id="CAwbkH" name="MIDIMsgTypeIOComponent.h" compile="0" resource="0"
+              file="Source/MIDIMsgTypeIOComponent.h"/>
         <FILE id="G4RWdd" name="MidiIOManagerComponent.cpp" compile="1" resource="0"
               file="Source/MidiIOManagerComponent.cpp"/>
         <FILE id="iQkNvG" name="MidiIOManagerComponent.h" compile="0" resource="0"
@@ -93,16 +112,6 @@
               resource="0" file="Source/ColourSelectorPropertyComponent.cpp"/>
         <FILE id="lwqixl" name="ColourSelectorPropertyComponent.h" compile="0"
               resource="0" file="Source/ColourSelectorPropertyComponent.h"/>
-      </GROUP>
-      <GROUP id="{2AB55B3F-218A-82B5-2A40-CF76A2F6AFA3}" name="ZeroConf Core">
-        <FILE id="f1iyUu" name="ZeroConfResolve.cpp" compile="1" resource="0"
-              file="Source/ZeroConfResolve.cpp"/>
-        <FILE id="I1tHfk" name="ZeroConfResolve.h" compile="0" resource="0"
-              file="Source/ZeroConfResolve.h"/>
-        <FILE id="k8dtC1" name="ZeroConfReceiver.cpp" compile="1" resource="0"
-              file="Source/ZeroConfReceiver.cpp"/>
-        <FILE id="NfufeP" name="ZeroConfReceiver.h" compile="0" resource="0"
-              file="Source/ZeroConfReceiver.h"/>
       </GROUP>
       <GROUP id="{B96111C1-DB1D-402D-BAB2-773DA177C67F}" name="Signal Core">
         <FILE id="pW0l77" name="SignalCore.cpp" compile="1" resource="0" file="Source/SignalCore.cpp"/>
@@ -152,42 +161,35 @@
           <FILE id="hk9Xqm" name="Signal.h" compile="0" resource="0" file="Source/Signal.h"/>
         </GROUP>
       </GROUP>
-      <GROUP id="{E172C905-8A29-4A40-140A-99DE87EA87CE}" name="Signal Utils">
-        <FILE id="WOhjBT" name="Message.cpp" compile="1" resource="0" file="Source/Message.cpp"/>
-        <FILE id="Gml1zL" name="Message.h" compile="0" resource="0" file="Source/Message.h"/>
-        <FILE id="Akskze" name="MessageArg.h" compile="0" resource="0" file="Source/MessageArg.h"/>
-        <GROUP id="{3CAB52DB-F1CD-BCF1-8772-BAB83E79DFBD}" name="OSC">
-          <FILE id="p652OQ" name="OSCArg.h" compile="0" resource="0" file="Source/OSCArg.h"/>
-          <FILE id="biC1Vw" name="OSCBroadcaster.cpp" compile="1" resource="0"
-                file="Source/OSCBroadcaster.cpp"/>
-          <FILE id="vtqSd9" name="OSCBroadcaster.h" compile="0" resource="0"
-                file="Source/OSCBroadcaster.h"/>
-          <FILE id="rze8XA" name="OSCBundle.cpp" compile="1" resource="0" file="Source/OSCBundle.cpp"/>
-          <FILE id="zrCatY" name="OSCBundle.h" compile="0" resource="0" file="Source/OSCBundle.h"/>
-          <FILE id="yyLRVJ" name="OSCListener.cpp" compile="1" resource="0" file="Source/OSCListener.cpp"/>
-          <FILE id="MbgrTm" name="OSCListener.h" compile="0" resource="0" file="Source/OSCListener.h"/>
-          <FILE id="bVbvum" name="OSCMessage.cpp" compile="1" resource="0" file="Source/OSCMessage.cpp"/>
-          <FILE id="bKOmKr" name="OSCMessage.h" compile="0" resource="0" file="Source/OSCMessage.h"/>
+      <GROUP id="{01A00411-75A4-31B9-EE41-A6BA732EA193}" name="Utility">
+        <GROUP id="{E172C905-8A29-4A40-140A-99DE87EA87CE}" name="Signal Utils">
+          <FILE id="WOhjBT" name="Message.cpp" compile="1" resource="0" file="Source/Message.cpp"/>
+          <FILE id="Gml1zL" name="Message.h" compile="0" resource="0" file="Source/Message.h"/>
+          <FILE id="Akskze" name="MessageArg.h" compile="0" resource="0" file="Source/MessageArg.h"/>
+          <GROUP id="{3CAB52DB-F1CD-BCF1-8772-BAB83E79DFBD}" name="OSC">
+            <FILE id="p652OQ" name="OSCArg.h" compile="0" resource="0" file="Source/OSCArg.h"/>
+            <FILE id="biC1Vw" name="OSCBroadcaster.cpp" compile="1" resource="0"
+                  file="Source/OSCBroadcaster.cpp"/>
+            <FILE id="vtqSd9" name="OSCBroadcaster.h" compile="0" resource="0"
+                  file="Source/OSCBroadcaster.h"/>
+            <FILE id="rze8XA" name="OSCBundle.cpp" compile="1" resource="0" file="Source/OSCBundle.cpp"/>
+            <FILE id="zrCatY" name="OSCBundle.h" compile="0" resource="0" file="Source/OSCBundle.h"/>
+            <FILE id="yyLRVJ" name="OSCListener.cpp" compile="1" resource="0" file="Source/OSCListener.cpp"/>
+            <FILE id="MbgrTm" name="OSCListener.h" compile="0" resource="0" file="Source/OSCListener.h"/>
+            <FILE id="bVbvum" name="OSCMessage.cpp" compile="1" resource="0" file="Source/OSCMessage.cpp"/>
+            <FILE id="bKOmKr" name="OSCMessage.h" compile="0" resource="0" file="Source/OSCMessage.h"/>
+          </GROUP>
         </GROUP>
       </GROUP>
-      <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="MIDI IO Utils">
-        <FILE id="Oc5NUl" name="MidiIODeviceManager.cpp" compile="1" resource="0"
-              file="Source/MidiIODeviceManager.cpp"/>
-        <FILE id="SLuvEs" name="MidiIODeviceManager.h" compile="0" resource="0"
-              file="Source/MidiIODeviceManager.h"/>
-      </GROUP>
-      <GROUP id="{B6F81B48-7B94-692F-5E3F-117F1A1E71FC}" name="Button Properties">
-        <FILE id="sPmafl" name="ButtonPropertyContainer.h" compile="0" resource="0"
-              file="Source/ButtonPropertyContainer.h"/>
-        <FILE id="xXggxH" name="PropertiesManager.cpp" compile="1" resource="0"
-              file="Source/PropertiesManager.cpp"/>
-        <FILE id="CoIeqS" name="PropertiesManager.h" compile="0" resource="0"
-              file="Source/PropertiesManager.h"/>
-        <GROUP id="{86CC2F4A-39BE-814C-EE5C-BF80BE2C6291}" name="PropertyGroup">
-          <FILE id="tz4ozO" name="PropertyGroup.cpp" compile="1" resource="0"
-                file="Source/PropertyGroup.cpp"/>
-          <FILE id="Jn6sS9" name="PropertyGroup.h" compile="0" resource="0" file="Source/PropertyGroup.h"/>
-        </GROUP>
+      <GROUP id="{2AB55B3F-218A-82B5-2A40-CF76A2F6AFA3}" name="ZeroConf Core">
+        <FILE id="f1iyUu" name="ZeroConfResolve.cpp" compile="1" resource="0"
+              file="Source/ZeroConfResolve.cpp"/>
+        <FILE id="I1tHfk" name="ZeroConfResolve.h" compile="0" resource="0"
+              file="Source/ZeroConfResolve.h"/>
+        <FILE id="k8dtC1" name="ZeroConfReceiver.cpp" compile="1" resource="0"
+              file="Source/ZeroConfReceiver.cpp"/>
+        <FILE id="NfufeP" name="ZeroConfReceiver.h" compile="0" resource="0"
+              file="Source/ZeroConfReceiver.h"/>
       </GROUP>
     </GROUP>
   </MAINGROUP>
