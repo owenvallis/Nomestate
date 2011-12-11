@@ -42,6 +42,7 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
     chronomePropertyGroup->addProperty(colourEditor);
     
     propertyGroupLibrary.registerPropertyGroup(nomePropertyGroup);
+    propertyGroupLibrary.registerPropertyGroup(chronomePropertyGroup);
     
     for (int i=0; i<64; i++) {
         buttonPropertyCollection.add(new ButtonPropertyContainer(i)); 
@@ -54,6 +55,8 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
 
 PropertiesManager::~PropertiesManager()
 {
+     propertyGroupLibrary.registerPropertyGroup(chronomePropertyGroup);
+    
     // this ensures that no dangling pointers are left when the
     // singleton is deleted.
 
