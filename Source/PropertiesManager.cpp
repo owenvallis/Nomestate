@@ -42,13 +42,6 @@ PropertiesManager::PropertiesManager()  :   connectedDevices(Identifier("connect
     chronomePropertyGroup->addProperty(colourEditor);
     
     propertyGroupLibrary.registerPropertyGroup(nomePropertyGroup);
-    //propertyGroupLibrary.registerPropertyGroup(chronomePropertyGroup);
-    
-    //mainPropertyGroup = new PropertyGroup("mainGroup","ButtonProperties");
-    //mainPropertyGroup->addProperty(buttonMode);
-    //mainPropertyGroup->addProperty(pressureMode);
-    //mainPropertyGroup->addProperty(colourEditor);
-    //propertyGroupLibrary.registerPropertyGroup(mainPropertyGroup);
     
     for (int i=0; i<64; i++) {
         buttonPropertyCollection.add(new ButtonPropertyContainer(i)); 

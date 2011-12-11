@@ -44,7 +44,7 @@ void NetworkSender::handleSignal(Signal s)
         } else if (s.getArgAsString(0) == "/nomestate/grid/led/all") {
             oscMsg.setAddress(s.getArgAsString(0)); 
             oscMsg.addIntArg(s.getArgAsInt32(1));
-        } else if(s.getArgAsString(0) == "/nomestate/grid/led/color") {
+        } else if(s.getArgAsString(0) == "/nomestate/grid/led/color" && PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("currentdevice", NULL).toString().contains("chr")) {
             oscMsg.setAddress(s.getArgAsString(0));
             oscMsg.addIntArg(s.getArgAsInt32(1));
             oscMsg.addIntArg(s.getArgAsInt32(2));
