@@ -20,10 +20,18 @@ MidiIODeviceManager::MidiIODeviceManager()
         if(!appProperties->getUserSettings()->containsKey(midiInputList[i] + "noteInputEnabled"))
         {
             appProperties->getUserSettings()->setValue(midiInputList[i] + "noteInputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteInputEnabled"))
+        {
+            setMidiInputEnabled(midiInputList[i], true);
         }
         
         if (!appProperties->getUserSettings()->containsKey(midiInputList[i] + "ccInputEnabled")) {
             appProperties->getUserSettings()->setValue(midiInputList[i] + "ccInputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccInputEnabled"))
+        {
+            setMidiInputEnabled(midiInputList[i], true);
         }
 	}
 	
@@ -33,14 +41,26 @@ MidiIODeviceManager::MidiIODeviceManager()
         if(!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "noteOutputEnabled"))
         {
             appProperties->getUserSettings()->setValue(midiOutputList[i] + "noteOutputEnabled", false);
+        } 
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteOutputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
         }
         
         if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "ccOutputEnabled")) {
             appProperties->getUserSettings()->setValue(midiOutputList[i] + "ccOutputEnabled", false);
         }
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccOutputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+        }
         
         if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "outputEnabled")) {
             appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", false);
+        }
+        else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "outputEnabled"))
+        {
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
         }
 	}	
     
