@@ -87,23 +87,3 @@ void PropertiesManager::valueTreePropertyChanged (ValueTree& treeWhosePropertyHa
         appProperties->saveIfNeeded();
     }
 }
-
-void PropertiesManager::valueTreeChildAdded (ValueTree& parentTree, ValueTree& childWhichHasBeenAdded)
-{
-    
-}
-
-void PropertiesManager::valueTreeChildRemoved (ValueTree& parentTree, ValueTree& childWhichHasBeenRemoved)
-{
-    
-}
-
-void PropertiesManager::valueTreeChildOrderChanged (ValueTree& parentTreeWhoseChildrenHaveMoved)
-{
-    
-}
-
-void PropertiesManager::valueTreeParentChanged     (ValueTree& treeWhoseParentHasChanged)
-{
-    
-}

@@ -13,6 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+extern ApplicationProperties* appProperties;
 
 class MidiIODeviceManager:  public AudioDeviceManager
 {
@@ -29,25 +30,11 @@ public:
 	bool isNoteEnabled(String midiDeviceName, bool input);
 	bool isCcEnabled(String midiDeviceName, bool input);
 	bool isMidiOutputEnabled(String midiDeviceName);
-    
-    //==========================================================================
-    ValueTree         _midiInputEnabled;
-    ValueTree         _midiOutputEnabled;
 
 	//==========================================================================
 	juce_UseDebuggingNewOperator
 	
-private:
-    //==========================================================================
-    // midi input
-    const Identifier  noteInputEnabled;
-    const Identifier  ccInputEnabled;
-    
-    // midi output
-    const Identifier  noteOutputEnabled;
-    const Identifier  ccOutputEnabled;
-    const Identifier  outputEnabled;
-	
+private:	
 	//==========================================================================
 	// (prevent copy constructor and operator= being generated..)
 	MidiIODeviceManager (const MidiIODeviceManager&);

@@ -29,6 +29,8 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
     // is this midi input source enabled
     if(_MidiDeviceManager->isMidiInputEnabled(source->getName()))
     {
+        DBG(source->getName());
+
         if(message.isController() && _MidiDeviceManager->isCcEnabled(source->getName(), true))
         {            
             // reference counted Signal ( string command, string origin )
