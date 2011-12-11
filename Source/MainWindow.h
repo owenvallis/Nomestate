@@ -36,6 +36,8 @@ public:
 
 private:
     MainComponent* mainComponent;
+    
+    ScopedPointer<ApplicationCommandManager>    commandManager;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainAppWindow)
 };

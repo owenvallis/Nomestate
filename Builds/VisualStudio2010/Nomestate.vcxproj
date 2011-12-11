@@ -1121,6 +1121,7 @@
     <ClInclude Include="..\..\Source\PropertiesManager.h"/>
     <ClInclude Include="..\..\Source\PropertyGroup.h"/>
     <ClInclude Include="..\..\Source\ButtonPropertyContainer.h"/>
+    <ClInclude Include="..\..\Source\GuiKeyCommands.h"/>
     <ClInclude Include="..\..\Source\DeviceTabComponent.h"/>
     <ClInclude Include="..\..\Source\MIDIMsgTypeIOComponent.h"/>
     <ClInclude Include="..\..\Source\MidiIOManagerComponent.h"/>

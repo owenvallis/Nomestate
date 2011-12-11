@@ -42,7 +42,7 @@ void NomeButton::paint(Graphics& g)
 
 void NomeButton::resized()
 {
-    buttonModeLabel.setBounds(2, 0, 30, 20);
+    buttonModeLabel.setBounds(2, 0, 28, 20);
 }
 
 void NomeButton::valueChanged(Value& value)

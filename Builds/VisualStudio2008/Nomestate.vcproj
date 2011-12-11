@@ -172,6 +172,7 @@
           <File RelativePath="..\..\Source\ButtonPropertyContainer.h"/>
         </Filter>
         <Filter Name="Nomestate View">
+          <File RelativePath="..\..\Source\GuiKeyCommands.h"/>
           <File RelativePath="..\..\Source\DeviceTabComponent.cpp"/>
           <File RelativePath="..\..\Source\DeviceTabComponent.h"/>
           <File RelativePath="..\..\Source\MIDIMsgTypeIOComponent.cpp"/>
