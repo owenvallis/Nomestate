@@ -63,10 +63,7 @@ PropertiesManager::~PropertiesManager()
 {
     // this ensures that no dangling pointers are left when the
     // singleton is deleted.
-    if(chronomePropertyGroup != nullptr)
-    {
-        deleteAndZero(chronomePropertyGroup);
-    }
+
     clearSingletonInstance();
 }
 

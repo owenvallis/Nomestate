@@ -27,12 +27,6 @@ public:
     void paint (Graphics& g);
     void resized();
     
-    void textEditorTextChanged (TextEditor &editor){};
-    void textEditorReturnKeyPressed (TextEditor &editor);
-    void textEditorEscapeKeyPressed (TextEditor &editor){};
-    void textEditorFocusLost (TextEditor &editor){};
-    
-    
 private:
         
     ScopedPointer<ChoicePropertyComponent>  devices;

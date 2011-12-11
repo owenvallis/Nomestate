@@ -20,7 +20,8 @@
 extern ApplicationProperties* appProperties;
 
 class PropertiesManager : public DeletedAtShutdown,
-                          public ValueListener
+                          public ValueListener,
+                          public ValueTree::Listener
 {
 public:
     PropertiesManager           ();
@@ -42,6 +43,15 @@ public:
     void deregisterAllButtons();
     
     void valueChanged(Value& value);
+    void valueTreePropertyChanged   (ValueTree& treeWhosePropertyHasChanged,
+                                        const Identifier& property);
+    void valueTreeChildAdded        (ValueTree& parentTree,
+                                     ValueTree& childWhichHasBeenAdded) {}
+    void valueTreeChildRemoved      (ValueTree& parentTree,
+                                     ValueTree& childWhichHasBeenRemoved) {}
+    void valueTreeChildOrderChanged (ValueTree& parentTreeWhoseChildrenHaveMoved) {}
+    void valueTreeParentChanged     (ValueTree& treeWhoseParentHasChanged) {}
+    
     
     ButtonPropertyContainer* getButtonPropertyContainer(int _buttonID) {return buttonPropertyCollection[_buttonID];}
     
