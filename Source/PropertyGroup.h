@@ -206,6 +206,7 @@ public:
 	virtual ~PropertyGroupLibrary ();
 
 	void registerPropertyGroup (PropertyGroup* newAspect);
+    void unregisterPropertyGroup (PropertyGroup* newAspect);
 	int getNumPropertyGroups () const;
 	PropertyGroup* getPropertyGroup (int index) const;
 	PropertyGroup* getPropertyGroup (const Identifier& propertyGroupId) const;

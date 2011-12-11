@@ -20,6 +20,7 @@
 extern ApplicationProperties* appProperties;
 
 class PropertiesManager : public DeletedAtShutdown,
+                          public ValueListener,
                           public ValueTree::Listener
 {
 public:
@@ -31,17 +32,17 @@ public:
     PropertyGroupLibrary* getPropertyGroupLibrary () {return &propertyGroupLibrary; };
     PropertyGroup::ComponentFactory* getPropertyGroupFactory () {return &propertyFactory; };
     
+    void updatePropertyGroupDescriptors();
+    
     void setButtonsBeingEdited(Array<int> buttonsBeingEdited);
     
     Array<PropertyGroup::Container*> getButtonsBeingEdited() { return _buttonsBeingEdited; };
     void clearButtonsBeingEdited() { _buttonsBeingEdited.clear(); }
-    
     void registerButton(NomeButton* button);
-    
     void deregisterButton(NomeButton* button);
-    
     void deregisterAllButtons();
     
+    void valueChanged(Value& value);
     void valueTreePropertyChanged   (ValueTree& treeWhosePropertyHasChanged,
                                         const Identifier& property);
     void valueTreeChildAdded        (ValueTree& parentTree,
@@ -55,6 +56,7 @@ public:
     ButtonPropertyContainer* getButtonPropertyContainer(int _buttonID) {return buttonPropertyCollection[_buttonID];}
     
     ValueTree                       connectedDevices;
+    Value                           currentDevice;
         
 private:
     
@@ -64,7 +66,8 @@ private:
     PropertyDescriptor              buttonMode;
     PropertyDescriptor              pressureMode;
     PropertyDescriptor              colourEditor;
-    PropertyGroup*                  mainPropertyGroup;
+    PropertyGroup*                  nomePropertyGroup;
+    PropertyGroup*                  chronomePropertyGroup;
     PropertyGroupLibrary            propertyGroupLibrary;
     PropertyGroup::ComponentFactory propertyFactory;
     
