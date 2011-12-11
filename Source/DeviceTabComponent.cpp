@@ -71,7 +71,7 @@ DeviceTabComponent::DeviceTabComponent() :  setConnectedDevice(String::empty, "S
 
 DeviceTabComponent::~DeviceTabComponent()
 {
-    
+    PropertiesManager::getInstance()->connectedDevices.removeListener(this);
 }
 
 void DeviceTabComponent::paint (Graphics& g)
