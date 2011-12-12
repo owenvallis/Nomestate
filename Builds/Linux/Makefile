@@ -79,6 +79,7 @@ OBJECTS := \
   $(OBJDIR)/OSCMessage_2d11b191.o \
   $(OBJDIR)/ZeroConfResolve_a5bbfec1.o \
   $(OBJDIR)/ZeroConfReceiver_ce82e104.o \
+  $(OBJDIR)/BinaryData_ce4232d4.o \
   $(OBJDIR)/juce_audio_basics_2442e4ea.o \
   $(OBJDIR)/juce_audio_devices_a4c8a728.o \
   $(OBJDIR)/juce_audio_formats_d349f0c8.o \
@@ -282,6 +283,11 @@ $(OBJDIR)/ZeroConfResolve_a5bbfec1.o: ../../Source/ZeroConfResolve.cpp
 $(OBJDIR)/ZeroConfReceiver_ce82e104.o: ../../Source/ZeroConfReceiver.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling ZeroConfReceiver.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/BinaryData_ce4232d4.o: ../../JuceLibraryCode/BinaryData.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling BinaryData.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/juce_audio_basics_2442e4ea.o: ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.cpp
