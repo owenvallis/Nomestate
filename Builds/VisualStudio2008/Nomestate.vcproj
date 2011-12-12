@@ -128,6 +128,18 @@
   <References/>
   <Files>
     <Filter Name="Nomestate">
+      <Filter Name="Resources">
+        <File RelativePath="..\..\Resources\Nomestatelcon.png">
+          <FileConfiguration Name="Debug|Win32"
+                             ExcludedFromBuild="true">
+            <Tool Name="VCCLCompilerTool"/>
+          </FileConfiguration>
+          <FileConfiguration Name="Release|Win32"
+                             ExcludedFromBuild="true">
+            <Tool Name="VCCLCompilerTool"/>
+          </FileConfiguration>
+        </File>
+      </Filter>
       <Filter Name="Libraries">
         <Filter Name="Ip">
           <File RelativePath="..\..\Libraries\ip\IpEndpointName.cpp"/>
@@ -3999,6 +4011,8 @@
     </Filter>
     <Filter Name="Juce Library Code">
       <File RelativePath="..\..\JuceLibraryCode\AppConfig.h"/>
+      <File RelativePath="..\..\JuceLibraryCode\BinaryData.cpp"/>
+      <File RelativePath="..\..\JuceLibraryCode\BinaryData.h"/>
       <File RelativePath="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_audio_basics.cpp"/>
       <File RelativePath="..\..\JuceLibraryCode\modules\juce_audio_devices\juce_audio_devices.cpp"/>
       <File RelativePath="..\..\JuceLibraryCode\modules\juce_audio_formats\juce_audio_formats.cpp"/>
@@ -4009,6 +4023,8 @@
       <File RelativePath="..\..\JuceLibraryCode\modules\juce_gui_basics\juce_gui_basics.cpp"/>
       <File RelativePath="..\..\JuceLibraryCode\modules\juce_gui_extra\juce_gui_extra.cpp"/>
       <File RelativePath="..\..\JuceLibraryCode\JuceHeader.h"/>
+      <File RelativePath="icon.ico"/>
+      <File RelativePath="resources.rc"/>
     </Filter>
   </Files>
   <Globals/>

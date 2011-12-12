@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="nw9dyo" name="Nomestate" projectType="guiapp" version="0.0.12"
-              bundleIdentifier="com.flipmu.Nomestate" jucerVersion="3.0.0">
+              bundleIdentifier="com.flipmu.Nomestate" jucerVersion="3.0.0"
+              bigIcon="mZu9Nh">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="xP45SC" juceFolder="../../../sdks/juce/modules"/>
     <VS2008 targetFolder="Builds/VisualStudio2008" libraryType="1" juceFolder="../../../sdks/juce/modules"/>
@@ -17,6 +18,10 @@
                    headerPath="../../Libraries/**"/>
   </CONFIGURATIONS>
   <MAINGROUP id="eBleJF" name="Nomestate">
+    <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="Resources">
+      <FILE id="mZu9Nh" name="Nomestatelcon.png" compile="0" resource="1"
+            file="Resources/Nomestatelcon.png"/>
+    </GROUP>
     <GROUP id="{333B5E45-B1A8-4314-B956-7146EF6A5D76}" name="Libraries">
       <GROUP id="{E4CB9906-2D74-7EF1-FB72-2069BEEA0811}" name="Ip">
         <FILE id="AJr8Lf" name="IpEndpointName.cpp" compile="1" resource="0"

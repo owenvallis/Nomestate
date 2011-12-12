@@ -5,6 +5,9 @@
     <Filter Include="Nomestate">
       <UniqueIdentifier>{C1EEBBB1-A8DC-6275-1D35-8A345FCFC9E5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Nomestate\Resources">
+      <UniqueIdentifier>{E276F23A-F45E-54CA-F246-C9F54D602E32}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Nomestate\Libraries">
       <UniqueIdentifier>{C15E7B4B-5E5D-B394-861D-E3D6F0636939}</UniqueIdentifier>
     </Filter>
@@ -313,6 +316,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Resources\Nomestatelcon.png">
+      <Filter>Nomestate\Resources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Libraries\ip\IpEndpointName.cpp">
       <Filter>Nomestate\Libraries\Ip</Filter>
     </ClCompile>
@@ -1446,6 +1452,9 @@
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_gui_extra\juce_module_info">
       <Filter>Juce Modules\juce_gui_extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>Juce Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_audio_basics.cpp">
       <Filter>Juce Library Code</Filter>
@@ -2703,8 +2712,21 @@
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>Juce Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>Juce Library Code</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\icon.ico">
+      <Filter>Juce Library Code</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include=".\resources.rc">
+      <Filter>Juce Library Code</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
