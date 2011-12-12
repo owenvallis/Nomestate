@@ -167,15 +167,14 @@ bool SignalModifier::convertToNote(Signal &s)
 
 bool SignalModifier::convertToTogglePressure(Signal &s)
 {
-    int toggleState = 0;
     
-    if(s.getArgAsInt32(2) == 0)
+    if(s.getArgAsInt32(2) == 0 && s.getArgAsInt32(2) != lastPressValue )
     {
-        toggleState = PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getProperty("buttonState") ? 0 : 1;
+        int toggleState = (bool)PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.getPropertyAsValue("buttonState", NULL).getValue() ? 0 : 1;
         
         PropertiesManager::getInstance()->getButtonPropertyContainer(s.getArgAsInt32(1))->propertyTree.setProperty("buttonState", toggleState, NULL);
-    }
-        
+
+       
         // reference counted Signal ( string command, string origin )
         Signal::SignalP midiSignal = new Signal("SEND_MIDI", "SIG_MOD");
         
@@ -184,17 +183,11 @@ bool SignalModifier::convertToTogglePressure(Signal &s)
         midiSignal->addIntArg(1);
         midiSignal->addIntArg(s.getArgAsInt32(1));
         
-        int pressureValue = int((s.getArgAsInt32(2)/1024.00)*127.00);
-        midiSignal->addIntArg(jmax(pressureValue, lastPressValue));
+    
+        midiSignal->addIntArg(toggleState);
         
         _mCenter->handleSignal(*midiSignal);
-    
-    if(lastPressValue < pressureValue) {
-        lastPressValue = pressureValue;
-    }
-    
-        lastPressValue *= toggleState;
-        
+            
         // reference counted Signal ( string command, string origin )
         Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "SIG_MOD");
         
@@ -207,6 +200,9 @@ bool SignalModifier::convertToTogglePressure(Signal &s)
         ledStateSignal->addIntArg(toggleState);
         
         _mCenter->handleSignal(*ledStateSignal); 
+    }
+    
+    lastPressValue = s.getArgAsInt32(2);
     
     return true;
 }
