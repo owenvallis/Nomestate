@@ -16,7 +16,7 @@
 #include "Signal.h"
 #include "MidiIODeviceManager.h"
 
-
+extern ApplicationProperties* appProperties;
 
 class MIDIReceiver : public MidiInputCallback
 

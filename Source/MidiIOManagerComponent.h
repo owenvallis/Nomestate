@@ -15,14 +15,18 @@
 #include "MidiMsgTypeIOComponent.h"
 #include "MidiIODeviceManager.h"
 
+extern ApplicationProperties* appProperties;
 
-class MidiIOManagerComponent:  public Component	
+class MidiIOManagerComponent:  public Component,
+                               public ComboBox::Listener
 {
 	//==============================================================================
 public:
 	//===========================================================================
 	MidiIOManagerComponent(MidiIODeviceManager& deviceManager);
 	~MidiIOManagerComponent();
+    
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 	
 	//==========================================================================
 	void paint (Graphics& g);
@@ -39,6 +43,9 @@ private:
 	OwnedArray<MidiMsgTypeIOComponent>              midiInputs, midiOutputs;
 	OwnedArray<Label>                               midiInputLabel, midiOutputLabel;
 	StringArray                                     midiInputsList, midiOutputsList;
+    
+    ComboBox                                        midiInputChannel, midiOutputChannel;
+    Label                                           midiInputChannelLabel, midiOutputChannelLabel;
 	
 	//==========================================================================
 	// (prevent copy constructor and operator= being generated..)

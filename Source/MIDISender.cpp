@@ -25,12 +25,12 @@ void MIDISender::handleSignal(Signal s) {
     
     if(s.getArgAsString(0) == "NOTE") {
         if(s.getArgAsInt32(3) > 0) {
-            sendNoteOn(s.getArgAsInt32(1), s.getArgAsInt32(2), s.getArgAsInt32(3)); 
+            sendNoteOn(appProperties->getUserSettings()->getIntValue("midiOutputChannel"), s.getArgAsInt32(2), s.getArgAsInt32(3)); 
         } else {
-            sendNoteOff(s.getArgAsInt32(1), s.getArgAsInt32(2)); 
+            sendNoteOff(appProperties->getUserSettings()->getIntValue("midiOutputChannel"), s.getArgAsInt32(2)); 
         }
     } else if(s.getArgAsString(0) == "CC") {
-        sendCC(s.getArgAsInt32(1), s.getArgAsInt32(2), s.getArgAsInt32(3)); 
+        sendCC(appProperties->getUserSettings()->getIntValue("midiOutputChannel"), s.getArgAsInt32(2), s.getArgAsInt32(3)); 
     }
     
 }

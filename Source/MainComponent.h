@@ -86,6 +86,7 @@ private:
 	OwnedArray <NomeButton>				buttonManager;
     
     TextButton                          clearButton;
+    TextButton                          testButton;
     String                              fileExtension;
     
 	int									gridSize;

@@ -92,6 +92,43 @@ void NetworkSender::valueChanged(Value& value)
         oscMsg.setAddress("/sys/rotation");
         oscMsg.addIntArg(PropertiesManager::getInstance()->connectedDevices.getPropertyAsValue("rotation", NULL).getValue());
         sendMessage(oscMsg);
+        
+        for (int button = 0; button < 64; button++)
+        {
+            Colour currentColour = Colour::fromString(PropertiesManager::getInstance()->getButtonPropertyContainer(button)->propertyTree.getPropertyAsValue(Identifier("Colour"), NULL).toString());
+            
+            DBG("send color");
+            
+            OSCMessage oscMsgColor;
+            
+            oscMsgColor.setAddress("/nomestate/grid/led/color");
+            // get the x position: LED bumber % 8
+            oscMsgColor.addIntArg(button % 8);
+            // get the y position: LED number / 8
+            oscMsgColor.addIntArg(button / 8);
+            // get the LED RED: 
+            oscMsgColor.addIntArg(currentColour.getRed() >> 1);
+            // get the LED GREEN: 
+            oscMsgColor.addIntArg(currentColour.getGreen() >> 1);
+            // get the LED BLUE: 
+            oscMsgColor.addIntArg(currentColour.getBlue() >> 1);
+            
+            sendMessage(oscMsgColor); 
+            
+            OSCMessage oscMsgSet;
+            
+            oscMsgSet.setAddress("/nomestate/grid/led/set");
+            // get the x position: LED bumber % 8
+            oscMsgSet.addIntArg(button % 8);
+            // get the y position: LED number / 8
+            oscMsgSet.addIntArg(button / 8);
+            // get the LED RED: 
+            oscMsgSet.addIntArg(1);
+            
+            sendMessage(oscMsgSet); 
+            
+            PropertiesManager::getInstance()->getButtonPropertyContainer(button)->propertyTree.setProperty(Identifier("buttonState"), 1, NULL);
+        }
     }
 
 }

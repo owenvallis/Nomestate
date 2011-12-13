@@ -15,6 +15,8 @@
 #include "Signal.h"
 #include "MidiIODeviceManager.h"
 
+extern ApplicationProperties* appProperties;
+
 class MIDISender {
     
 public:

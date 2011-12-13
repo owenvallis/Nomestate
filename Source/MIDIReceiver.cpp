@@ -31,8 +31,11 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
     {
         DBG(source->getName());
 
-        if(message.isController() && _MidiDeviceManager->isCcEnabled(source->getName(), true))
-        {            
+        if(message.isController() && _MidiDeviceManager->isCcEnabled(source->getName(), true)
+           && appProperties->getUserSettings()->getIntValue("midiInputChannel") == message.getChannel())
+        {      
+            
+            DBG(message.getControllerNumber() );
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");
             
@@ -52,7 +55,8 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             
             _mCenter->handleSignal(*ledStateSignal); 
         } 
-        else if (message.isNoteOn() && _MidiDeviceManager->isNoteEnabled(source->getName(), true))
+        else if (message.isNoteOn() && _MidiDeviceManager->isNoteEnabled(source->getName(), true)
+                 && appProperties->getUserSettings()->getIntValue("midiInputChannel") == message.getChannel())
         {            
             // lets set the color based off MIDI note Velocity
             int MIDIVelocity = message.getVelocity();
@@ -129,7 +133,8 @@ void MIDIReceiver::handleIncomingMidiMessage (MidiInput *source, const MidiMessa
             
             
         }
-        else if (message.isNoteOff() && _MidiDeviceManager->isNoteEnabled(source->getName(), true))
+        else if (message.isNoteOff() && _MidiDeviceManager->isNoteEnabled(source->getName(), true)
+                 && appProperties->getUserSettings()->getIntValue("midiInputChannel") == message.getChannel())
         {             
             // reference counted Signal ( string command, string origin )
             Signal::SignalP ledStateSignal = new Signal("SEND_OSC", "RCV_MIDI");

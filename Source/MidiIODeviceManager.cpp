@@ -19,19 +19,19 @@ MidiIODeviceManager::MidiIODeviceManager()
 	{
         if(!appProperties->getUserSettings()->containsKey(midiInputList[i] + "noteInputEnabled"))
         {
-            appProperties->getUserSettings()->setValue(midiInputList[i] + "noteInputEnabled", false);
+            appProperties->getUserSettings()->setValue(midiInputList[i] + "noteInputEnabled", var(false));
         } 
         else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteInputEnabled"))
         {
-            setMidiInputEnabled(midiInputList[i], true);
+            setMidiInputEnabled(midiInputList[i], var(true));
         }
         
         if (!appProperties->getUserSettings()->containsKey(midiInputList[i] + "ccInputEnabled")) {
-            appProperties->getUserSettings()->setValue(midiInputList[i] + "ccInputEnabled", false);
+            appProperties->getUserSettings()->setValue(midiInputList[i] + "ccInputEnabled", var(false));
         } 
         else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccInputEnabled"))
         {
-            setMidiInputEnabled(midiInputList[i], true);
+            setMidiInputEnabled(midiInputList[i], var(true));
         }
 	}
 	
@@ -40,29 +40,41 @@ MidiIODeviceManager::MidiIODeviceManager()
 	{
         if(!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "noteOutputEnabled"))
         {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "noteOutputEnabled", false);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "noteOutputEnabled", var(false));
         } 
         else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "noteOutputEnabled"))
         {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", var(true));
         }
         
         if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "ccOutputEnabled")) {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "ccOutputEnabled", false);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "ccOutputEnabled", var(false));
         }
         else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "ccOutputEnabled"))
         {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", var(true));
         }
         
         if (!appProperties->getUserSettings()->containsKey(midiOutputList[i] + "outputEnabled")) {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", false);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", var(false));
         }
         else if (appProperties->getUserSettings()->getBoolValue(midiInputList[i] + "outputEnabled"))
         {
-            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", true);
+            appProperties->getUserSettings()->setValue(midiOutputList[i] + "outputEnabled", var(true));
         }
-	}	
+	}
+    
+    if(!appProperties->getUserSettings()->containsKey("midiInputChannel"))
+    {
+        int ch = 1;
+        appProperties->getUserSettings()->setValue("midiInputChannel", var(ch));
+    }
+	
+    if(!appProperties->getUserSettings()->containsKey("midiOutputChannel"))
+    {
+        int ch = 1;
+        appProperties->getUserSettings()->setValue("midiOutputChannel", var(ch));
+    }
     
     appProperties->saveIfNeeded();
 }

@@ -131,12 +131,14 @@ void DeviceTabComponent::resized()
 void DeviceTabComponent::setupRotationList()
 {
     rotationNames.add("top");
+    rotationNamesVars.add(var(90));
     rotationNames.add("right");
+    rotationNamesVars.add(var(180));
     rotationNames.add("bottom");
+    rotationNamesVars.add(var(270));
     rotationNames.add("left");
-    for (int i = 0; i<rotationNames.size(); i++) {
-        rotationNamesVars.add(var(i*90));
-    }
+    rotationNamesVars.add(var(0));
+
 }
 
 void DeviceTabComponent::setupDeviceList()

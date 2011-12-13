@@ -15,15 +15,15 @@
 ApplicationProperties* appProperties = nullptr;
 
 //==============================================================================
-class ChronomeStateApplication  : public JUCEApplication
+class NomeStateApplication  : public JUCEApplication
 {
 public:
     //==============================================================================
-    ChronomeStateApplication()
+    NomeStateApplication()
     {
     }
 
-    ~ChronomeStateApplication()
+    ~NomeStateApplication()
     {
     }
 
@@ -66,7 +66,7 @@ public:
     
     const String getApplicationName()
     {
-        return "Chronome State";
+        return "Nomestate";
     }
 
     const String getApplicationVersion()
@@ -92,4 +92,4 @@ private:
 
 //==============================================================================
 // This macro generates the main() routine that starts the app.
-START_JUCE_APPLICATION(ChronomeStateApplication)
+START_JUCE_APPLICATION(NomeStateApplication)

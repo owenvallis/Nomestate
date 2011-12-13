@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F226FEB169102C64E80B81CC"
-               BuildableName = "chronomeState.app"
+               BuildableName = "Nometstate.app"
                BlueprintName = "Nomestate"
                ReferencedContainer = "container:Nomestate.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F226FEB169102C64E80B81CC"
-            BuildableName = "chronomeState.app"
+            BuildableName = "Nometstate.app"
             BlueprintName = "Nomestate"
             ReferencedContainer = "container:Nomestate.xcodeproj">
          </BuildableReference>
@@ -50,7 +50,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F226FEB169102C64E80B81CC"
-            BuildableName = "chronomeState.app"
+            BuildableName = "Nometstate.app"
             BlueprintName = "Nomestate"
             ReferencedContainer = "container:Nomestate.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F226FEB169102C64E80B81CC"
-            BuildableName = "chronomeState.app"
+            BuildableName = "Nometstate.app"
             BlueprintName = "Nomestate"
             ReferencedContainer = "container:Nomestate.xcodeproj">
          </BuildableReference>

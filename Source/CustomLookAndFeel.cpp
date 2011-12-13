@@ -17,6 +17,7 @@ setColour(ComboBox::buttonColourId, Colours::grey );
 setColour(ComboBox::arrowColourId, Colours::transparentBlack );
 setColour(ComboBox::outlineColourId, Colour(0xff465366) );
 setColour(TextButton::buttonColourId, Colour(0xff929da8) );
+setColour(TextButton::buttonOnColourId, Colour(0xff929da8) );    
 setColour(Slider::thumbColourId, Colours::yellow);
 setColour(Slider::backgroundColourId, Colours::white);
 setColour(Slider::textBoxTextColourId, Colours::black);

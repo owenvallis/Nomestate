@@ -13,7 +13,8 @@
 MainComponent::MainComponent() : propertyEditor(PropertiesManager::getInstance()->getPropertyGroupLibrary(), 
                                                 PropertiesManager::getInstance()->getPropertyGroupFactory()),
                                  _sCore(_deviceManager),
-                                 clearButton("clear")
+                                 clearButton("clear"),
+                                 testButton("test")
 
 {
 	//setup default grid size
@@ -36,12 +37,15 @@ MainComponent::MainComponent() : propertyEditor(PropertiesManager::getInstance()
 	}
     
     clearButton.addListener(this);
+    testButton.addListener(this);
     
     addAndMakeVisible(&clearButton);
+    addAndMakeVisible(&testButton);
     addAndMakeVisible(&propertyEditor);
-    	
-    clearButton.setAlpha(0.1);
     
+    testButton.setClickingTogglesState(true);
+    testButton.setToggleState(false, false);
+    	    
     commandManager = new ApplicationCommandManager();
     commandManager->registerAllCommandsForTarget(this);
     commandManager->registerAllCommandsForTarget(JUCEApplication::getInstance());
@@ -76,6 +80,8 @@ void MainComponent::resized() {
 	}
     
     clearButton.setBounds(250, 9 + (48*gridY), 87, 22);
+    testButton.setBounds(250 + 87 + 9, 9 + (48*gridY), 87, 22);
+
 }
 
 const StringArray MainComponent::getMenuBarNames()
@@ -192,9 +198,6 @@ void MainComponent::loadFile(){
         }
     }
     
-    clearButton.setInterceptsMouseClicks(true, false);
-    clearButton.setAlpha(1.0);
-
 }
 
 
@@ -250,11 +253,6 @@ void MainComponent::showProperties(){
             _sCore.getMessageCenter()->handleSignal(*ledStateSignal); 
 		}
     }
-    
-    if(buttonsBeingEdited.size() > 0) {
-        clearButton.setInterceptsMouseClicks(true, false);
-        clearButton.setAlpha(1.0);
-    }
 
     PropertiesManager::getInstance()->setButtonsBeingEdited(buttonsBeingEdited);
     propertyEditor.showPropertiesFor(PropertiesManager::getInstance()->getButtonsBeingEdited());
@@ -292,11 +290,33 @@ void MainComponent::buttonClicked (Button* buttonThatWasChanged) {
         
         _sCore.getMessageCenter()->handleSignal(*ledClearSignal); 
         
-        showProperties();
+        for (int button = 0; button < 64; button++)
+        {
+            PropertiesManager::getInstance()->getButtonPropertyContainer(button)->propertyTree.setProperty(Identifier("buttonState"), 0, NULL);
+        } 
         
-        clearButton.setInterceptsMouseClicks(false, false);
-        clearButton.setAlpha(0.1);
+        testButton.setToggleState(false, false);
+                
+        showProperties();
     }
+    
+    else if (buttonThatWasChanged == &testButton) {
+        
+        // reference counted Signal ( string command, string origin )
+        Signal::SignalP ledClearSignal = new Signal("SEND_OSC", "MAINCOMPONENT");
+        
+        ledClearSignal->addStringArg("/nomestate/grid/led/all");
+        ledClearSignal->addIntArg(testButton.getToggleState());
+        
+        _sCore.getMessageCenter()->handleSignal(*ledClearSignal); 
+        
+        for (int button = 0; button < 64; button++)
+        {
+            PropertiesManager::getInstance()->getButtonPropertyContainer(button)->propertyTree.setProperty(Identifier("buttonState"), testButton.getToggleState(), NULL);
+        }         
+    }
+    
+    
     
 }
 

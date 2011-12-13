@@ -12,7 +12,10 @@
 
 
 //==============================================================================
-MidiIOManagerComponent::MidiIOManagerComponent (MidiIODeviceManager& deviceManager) 
+MidiIOManagerComponent::MidiIOManagerComponent (MidiIODeviceManager& deviceManager) : midiInputChannel("midiInputChannel"),
+                                                                                      midiOutputChannel("midiOutputChannel"),
+                                                                                      midiInputChannelLabel(String::empty, "Input:          MIDI Channel "),
+                                                                                      midiOutputChannelLabel(String::empty, "Output:        MIDI Channel ")
 {	
 	midiInputsList = MidiInput::getDevices();
 	midiOutputsList = MidiOutput::getDevices();
@@ -46,6 +49,24 @@ MidiIOManagerComponent::MidiIOManagerComponent (MidiIODeviceManager& deviceManag
     cc->setJustificationType (Justification::centredLeft);
     cc->setEditable (false, false, false);
     cc->setColour (TextEditor::textColourId, Colours::lightgrey );
+    
+    addAndMakeVisible(&midiInputChannel);
+    addAndMakeVisible(&midiOutputChannel);
+    
+    addAndMakeVisible(&midiInputChannelLabel);
+    addAndMakeVisible(&midiOutputChannelLabel);   
+    
+    for (int channel = 1; channel < 17; channel++)
+    {
+        midiInputChannel.addItem(String(channel), channel);
+        midiOutputChannel.addItem(String(channel), channel);
+    };
+    
+    midiInputChannel.setText(appProperties->getUserSettings()->getValue("midiInputChannel") );
+    midiOutputChannel.setText(appProperties->getUserSettings()->getValue("midiOutputChannel") );
+    
+    midiInputChannel.addListener(this);
+    midiOutputChannel.addListener(this);
 }
 
 MidiIOManagerComponent::~MidiIOManagerComponent()
@@ -121,9 +142,24 @@ void MidiIOManagerComponent::resized()
 								 proportionOfWidth (0.9000f),
 								 h);
 	}
+    
+    
+    midiInputChannelLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
+    midiInputChannelLabel.setJustificationType (Justification::centredLeft);
+    midiInputChannelLabel.setEditable (false, false, false);
+    midiInputChannelLabel.setColour (TextEditor::textColourId, Colour(25,25,25).contrasting(1.0f));
+    midiInputChannelLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
+    
+    f = new Font(midiInputChannelLabel.getFont ());
+    width = f->getStringWidth(midiInputChannelLabel.getText() );
+    midiInputChannelLabel.setBounds(proportionOfWidth (0.0500f),
+                                 y + (dh * midiInputsList.size()),
+                                 width + 10, h);
+    
+    midiInputChannel.setBounds(proportionOfWidth (0.6280f), y + (dh * midiInputsList.size()), 127, h);
 	
 	//outputs
-	y = y + (dh * midiInputsList.size()-1);
+	y += (dh * (midiInputsList.size()+1));
 	
 	midiOutputLabel.clear();
 	
@@ -147,5 +183,33 @@ void MidiIOManagerComponent::resized()
 								 y + (dh * i),
 								 proportionOfWidth (0.9000f),
 								 h);
-	}    
+	}
+    
+    midiOutputChannelLabel.setFont (Font (Font::getDefaultSansSerifFontName (), 11.5000f, Font::bold));
+    midiOutputChannelLabel.setJustificationType (Justification::centredLeft);
+    midiOutputChannelLabel.setEditable (false, false, false);
+    midiOutputChannelLabel.setColour (TextEditor::textColourId, Colour(25,25,25).contrasting(1.0f));
+    midiOutputChannelLabel.setColour (TextEditor::backgroundColourId, Colour (0x0));
+    
+    f = new Font(midiOutputChannelLabel.getFont ());
+    width = f->getStringWidth(midiOutputChannelLabel.getText() );
+    midiOutputChannelLabel.setBounds(proportionOfWidth (0.0500f),
+                                    y + (dh * midiOutputsList.size()),
+                                    width + 10, h);
+    midiOutputChannel.setBounds(proportionOfWidth (0.6280f), y + (dh * midiOutputsList.size()), 127, h);
+}
+
+void MidiIOManagerComponent::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    if(&midiInputChannel == comboBoxThatHasChanged)
+    {
+        appProperties->getUserSettings()->setValue("midiInputChannel", midiInputChannel.getSelectedId());
+        appProperties->saveIfNeeded();
+    }
+    else if(&midiOutputChannel == comboBoxThatHasChanged)
+    {
+        appProperties->getUserSettings()->setValue("midiOutputChannel", midiOutputChannel.getSelectedId());
+        appProperties->saveIfNeeded();
+    }
+    
 }
