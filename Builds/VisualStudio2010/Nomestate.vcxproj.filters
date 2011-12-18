@@ -5,8 +5,8 @@
     <Filter Include="Nomestate">
       <UniqueIdentifier>{C1EEBBB1-A8DC-6275-1D35-8A345FCFC9E5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Nomestate\BinaryData">
-      <UniqueIdentifier>{B3D72C3F-C542-CEAF-53FB-0ADE36BED020}</UniqueIdentifier>
+    <Filter Include="Nomestate\BinaryDate">
+      <UniqueIdentifier>{0A3042B6-C455-959B-AE2A-8D9AA5083A41}</UniqueIdentifier>
     </Filter>
     <Filter Include="Nomestate\Libraries">
       <UniqueIdentifier>{C15E7B4B-5E5D-B394-861D-E3D6F0636939}</UniqueIdentifier>
@@ -317,7 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\BinaryData\Nomestatelcon.png">
-      <Filter>Nomestate\BinaryData</Filter>
+      <Filter>Nomestate\BinaryDate</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Libraries\ip\IpEndpointName.cpp">
       <Filter>Nomestate\Libraries\Ip</Filter>

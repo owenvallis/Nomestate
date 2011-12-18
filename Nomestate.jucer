@@ -18,7 +18,7 @@
                    headerPath="../../Libraries/**"/>
   </CONFIGURATIONS>
   <MAINGROUP id="eBleJF" name="Nomestate">
-    <GROUP id="{513EFC4E-18FE-7339-E0B7-65D7332A31D2}" name="BinaryData">
+    <GROUP id="{E9907219-8CD4-4996-7842-BC1C42AE010D}" name="BinaryDate">
       <FILE id="BEJudG" name="Nomestatelcon.png" compile="0" resource="1"
             file="BinaryData/Nomestatelcon.png"/>
     </GROUP>
