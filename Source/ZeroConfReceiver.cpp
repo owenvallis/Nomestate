@@ -19,7 +19,6 @@ ZeroConfReceiver::ZeroConfReceiver() : Thread ("Zerconf Thread"),
 ZeroConfReceiver::~ZeroConfReceiver()
 {   
     DNSServiceRefDeallocate(serviceRef);
-
     // allow the thread 2 seconds to stop cleanly - should be plenty of time.
     stopThread (2000);
 }
@@ -75,6 +74,7 @@ void ZeroConfReceiver::run()
             return;
         }
     }
+    
 }
 
 void ZeroConfReceiver::MyBrowseCallBack(DNSServiceRef service,

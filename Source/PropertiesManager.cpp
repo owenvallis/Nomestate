@@ -83,9 +83,8 @@ void PropertiesManager::updatePropertyGroupDescriptors()
         DBG("Adding chronome properties..." );
         propertyGroupLibrary.registerPropertyGroup(chronomePropertyGroup);
 
-    }
-    
-    else if (connectedDeviceName.startsWith("arduinome") || connectedDeviceName.startsWith("monome") ) 
+    }    
+    else
     {
         DBG("Adding arduinome/monome properties..." );
         propertyGroupLibrary.unregisterPropertyGroup(chronomePropertyGroup);    
